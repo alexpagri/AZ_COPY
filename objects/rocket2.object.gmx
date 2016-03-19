@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>-3</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -42,6 +42,7 @@ checkn=0;
 checkm=0;
 angdir=0;
 speedup=0;
+sii=c_white;
 alarm[2]=global.rocket2_speedup_timer*room_speed;
 alarm[1]=room_speed*global.rocket2_init_timer;
 pf=noone;
@@ -284,7 +285,7 @@ phy_speed_y=sin(xty)*speedf;
             <kind>1</kind>
             <string>draw_set_colour(c_black);
 //draw_circle(x,y,global.rocket2_radius,false);
-draw_sprite_ext(rk,0,x,y,1,1,-arctan2(phy_speed_y,phy_speed_x)*180/pi,c_white,255);
+draw_sprite_ext(rk,0,x,y,1,1,-arctan2(phy_speed_y,phy_speed_x)*180/pi,sii,255);
 //draw_circle(checkn,checkm,global.projectile0_radius/2,false);
 //draw_sprite_ext(sprite7,0,x,y,1,1,-arctan2(phy_speed_y,phy_speed_x)*180/pi-90,c_white,255);
 </string>

@@ -161,8 +161,11 @@ oy=cy;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_circle(x,y,4,false);
-if(dmode)draw_path(pathx,0,0,true);
+            <string>if(dmode)
+{
+draw_circle(x,y,4,false);
+draw_path(pathx,0,0,true);
+}
 </string>
           </argument>
         </arguments>

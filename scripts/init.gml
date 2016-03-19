@@ -10,19 +10,19 @@ globalvar grid_matrix;
 
 global.sdist=0;
 global.chkdist=1;
-global.projectile0_life=5;
-global.projectile0_speed=5;
-global.projectile0_radius=5;
+global.projectile0_life=10;
+global.projectile0_speed=2;
+global.projectile0_radius=3;
 
 global.lazor_help_life=500;
 global.lazor_help_speed=10;
 global.lazor_help_radius=5;
 
-global.lazor_life=1;
-global.lazor_speed=100;
-global.lazor_radius=5;
+global.lazor_life=0.5;
+global.lazor_speed=30;
+global.lazor_radius=2;
 
-global.rocket2_life=150;
+global.rocket2_life=15;
 global.rocket2_speed=10;
 global.rocket2_radius=8;
 global.rocket2_catch_up=0.03;
@@ -33,12 +33,12 @@ global.rocket2_speedup_timer=6;
 global.rocket2_speedup_factor=0.0001;
 global.rocket2_speedup_max=20;
 
-global.minigun_balls1_life=3;
+global.minigun_balls1_life=5;
 global.minigun_balls1_speed=1;
 global.minigun_balls1_radius=2;
 global.minigun_balls1_spinup_time=1.5;
 global.minigun_balls1_firerate=15;
-global.minigun_balls1_deviation=5;
+global.minigun_balls1_deviation=3;
 global.minigun_balls1_time=15;
 
 
@@ -53,8 +53,8 @@ maxw=1280;
 maxh=720;
 minw=640;
 minh=480;
-chance=irandom_range(40,60);
-chance_w=irandom_range(40,60);
+chance=irandom_range(30,70);
+chance_w=irandom_range(30,70);
 wall_width=4;
 wall_length=68;
 

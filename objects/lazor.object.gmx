@@ -43,6 +43,7 @@ has_init=1;
 solved_col=0;
 checkn=0;
 checkm=0;
+sii=c_red;
 </string>
           </argument>
         </arguments>
@@ -65,7 +66,11 @@ checkm=0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(instance_exists(ign))ign.block_fire=0;
+            <string>if(instance_exists(ign))
+{
+ign.block_fire=0;
+ign.stuck=0;
+}
 </string>
           </argument>
         </arguments>
@@ -207,8 +212,8 @@ cpo++;
             <string>draw_set_colour(c_black);
 //draw_circle(x,y,global.lazor_radius,false);
 //draw_circle(checkn,checkm,global.projectile0_radius/2,false);
-for(f=1;f&lt;cpo;f++)draw_line_width_colour(cpox[f-1],cpoy[f-1],cpox[f],cpoy[f],global.lazor_radius,c_red,c_red);
-draw_line_width_colour(cpox[cpo-1],cpoy[cpo-1],phy_position_x,phy_position_y,global.lazor_radius,c_red,c_red);
+for(f=1;f&lt;cpo;f++)draw_line_width_colour(cpox[f-1],cpoy[f-1],cpox[f],cpoy[f],global.lazor_radius,sii,sii);
+draw_line_width_colour(cpox[cpo-1],cpoy[cpo-1],phy_position_x,phy_position_y,global.lazor_radius,sii,sii);
 </string>
           </argument>
         </arguments>

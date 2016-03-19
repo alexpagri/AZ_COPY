@@ -12,6 +12,7 @@
     <sprite>sprites\body</sprite>
     <sprite>sprites\t_def</sprite>
     <sprite>sprites\t1</sprite>
+    <sprite>sprites\tw</sprite>
     <sprite>sprites\t2</sprite>
     <sprite>sprites\wall</sprite>
     <sprite>sprites\wall_w</sprite>

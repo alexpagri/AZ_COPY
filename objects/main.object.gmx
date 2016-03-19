@@ -73,7 +73,8 @@ loc_m=irandom_range(1,grid_m-1);
 if(mp_grid_get_cell(global.grid,loc_n,loc_m)!=-1)
 {
 p=1;
-instance_create(loc_n*grid_density,loc_m*grid_density,control);
+pr6=instance_create(loc_n*grid_density,loc_m*grid_density,control);
+pr6.sii=c_red;
 }
 }
 
@@ -241,7 +242,7 @@ pr6=instance_create(t2y*grid_density,t2x*grid_density,control);
         key_down=vk_down;
         key_right=vk_right;
         key_fire=ord('M');
-        sii=t2;
+        sii=c_lime;
         }
         
 
