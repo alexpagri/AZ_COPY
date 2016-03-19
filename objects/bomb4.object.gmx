@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-3</depth>
+  <depth>0</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -25,9 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>alarm[0]=room_speed*global.rocket2_life;
+            <string>alarm[0]=room_speed*global.bomb4_life;
 fix1=physics_fixture_create();
-physics_fixture_set_circle_shape(fix1,global.rocket2_radius);
+physics_fixture_set_circle_shape(fix1,global.bomb4_radius);
 physics_fixture_set_friction(fix1,0);
 physics_fixture_set_density(fix1,0.5);
 physics_fixture_set_linear_damping(fix1,0);
@@ -40,15 +40,6 @@ has_init=1;
 solved_col=0;
 checkn=0;
 checkm=0;
-angdir=0;
-speedup=0;
-sii=c_white;
-alarm[2]=global.rocket2_speedup_timer*room_speed;
-alarm[1]=room_speed*global.rocket2_init_timer;
-pf=noone;
-globalvar speedf;
-globalvar xty;
-globalvar xtz;
 </string>
           </argument>
         </arguments>
@@ -76,57 +67,20 @@ globalvar xtz;
 ign.block_fire=0;
 ign.weapon_current=0;
 }
-if(pf!=noone &amp;&amp; instance_exists(pf))with(pf)instance_destroy();
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="2" enumb="2">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>speedup=1;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="2" enumb="1">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>pf=instance_create(x,y,path_follower);
-if(instance_exists(pf))pf.rocket=id;
-//phy_linear_damping=5;
-speedf=phy_speed;
-speedinit=speedf;
+
+
+for(i=0;i&lt;global.bomb4_shatter_count;i++)
+{
+pr5=instance_create(phy_position_x,phy_position_y,bomb4_shatter);
+angle=random(360);
+rand=random(global.bomb4_shatter_speed);
+pr5.angle=angle;
+with(pr5)
+    {
+    //physics_apply_impulse(phy_com_x,phy_com_y,other.rand*cos(other.angle*pi/180),other.rand*sin(other.angle*pi/180));
+    physics_apply_angular_impulse(global.bomb4_shatter_ang_imp);
+    }
+}
 </string>
           </argument>
         </arguments>
@@ -150,6 +104,8 @@ speedinit=speedf;
           <argument>
             <kind>1</kind>
             <string>instance_destroy();
+
+
 </string>
           </argument>
         </arguments>
@@ -175,7 +131,7 @@ speedinit=speedf;
             <string>if(solved_col)
 {
 iddx=noone;
-iddx=collision_circle(x,y,global.rocket2_radius,control,true,true);
+iddx=collision_circle(x,y,global.bomb4_radius,control,true,true);
 if(iddx!=noone)
 {
 if(instance_exists(iddx))with(iddx)instance_destroy();
@@ -183,16 +139,15 @@ instance_destroy();
 }
 }
 
-
 if(solved_col==0)
 {
-if(phy_speed!=0)checkn=x+phy_speed_x/phy_speed*global.chkdist*global.rocket2_radius;
-if(phy_speed!=0)checkm=y+phy_speed_y/phy_speed*global.chkdist*global.rocket2_radius;
+checkn=x+phy_speed_x/phy_speed*global.chkdist*global.bomb4_radius;
+checkm=y+phy_speed_y/phy_speed*global.chkdist*global.bomb4_radius;
 if(!instance_exists(ign))
 {
 solved_col=1;
 fix1=physics_fixture_create();
-physics_fixture_set_circle_shape(fix1,global.rocket2_radius);
+physics_fixture_set_circle_shape(fix1,global.bomb4_radius);
 physics_fixture_set_friction(fix1,0);
 physics_fixture_set_density(fix1,5000);
 physics_fixture_set_linear_damping(fix1,0);
@@ -206,7 +161,7 @@ else if((physics_test_overlap(x,y,0,ign)==false || physics_test_overlap(checkn,c
 {
 solved_col=1;
 fix1=physics_fixture_create();
-physics_fixture_set_circle_shape(fix1,global.rocket2_radius);
+physics_fixture_set_circle_shape(fix1,global.bomb4_radius);
 physics_fixture_set_friction(fix1,0);
 physics_fixture_set_density(fix1,5000);
 physics_fixture_set_linear_damping(fix1,0);
@@ -217,28 +172,6 @@ phy_fixed_rotation=1;
 phy_bullet=1;
 }
 }
-
-if(speedup &amp;&amp; speedf&lt;global.rocket2_speedup_max)
-{
-speedf+=global.rocket2_speedup_factor;
-}
-
-
-if(pf!=noone &amp;&amp; instance_exists(pf))
-{
-//phy_speed_x=(distance_to_object(pf))*(pf.x-phy_com_x)*global.rocket2_catch_up;
-//phy_speed_y=(distance_to_object(pf))*(pf.y-phy_com_y)*global.rocket2_catch_up;
-//physics_apply_impulse(phy_com_x,phy_com_y,(distance_to_object(pf)-5)*(pf.x-phy_com_x)*global.rocket2_catch_up,(distance_to_object(pf)-5)*(pf.y-phy_com_y)*global.rocket2_catch_up);
-xty=arctan2(phy_speed_y,phy_speed_x);
-xtz=arctan2(pf.y-phy_position_y,pf.x-phy_position_x);
-if(angle_difference(xty*180/pi,xtz*180/pi)&gt;global.rocket2_angdiff)angdir=0;
-else if(angle_difference(xty*180/pi,xtz*180/pi)&lt;-global.rocket2_angdiff)angdir=1;
-if(!angdir)xty-=global.rocket2_catch_up+(speedf-speedinit)*0.1;
-else xty+=global.rocket2_catch_up+(speedf-speedinit)*0.1;
-phy_speed_x=cos(xty)*speedf;
-phy_speed_y=sin(xty)*speedf;
-}
-
 </string>
           </argument>
         </arguments>
@@ -288,10 +221,8 @@ phy_speed_y=sin(xty)*speedf;
           <argument>
             <kind>1</kind>
             <string>draw_set_colour(c_black);
-//draw_circle(x,y,global.rocket2_radius,false);
-draw_sprite_ext(rk,0,x,y,1,1,-arctan2(phy_speed_y,phy_speed_x)*180/pi,sii,255);
+draw_circle(x,y,global.bomb4_radius,false);
 //draw_circle(checkn,checkm,global.projectile0_radius/2,false);
-//draw_sprite_ext(sprite7,0,x,y,1,1,-arctan2(phy_speed_y,phy_speed_x)*180/pi-90,c_white,255);
 </string>
           </argument>
         </arguments>
@@ -300,7 +231,7 @@ draw_sprite_ext(rk,0,x,y,1,1,-arctan2(phy_speed_y,phy_speed_x)*180/pi,sii,255);
   </events>
   <PhysicsObject>-1</PhysicsObject>
   <PhysicsObjectSensor>0</PhysicsObjectSensor>
-  <PhysicsObjectShape>2</PhysicsObjectShape>
+  <PhysicsObjectShape>0</PhysicsObjectShape>
   <PhysicsObjectDensity>0.5</PhysicsObjectDensity>
   <PhysicsObjectRestitution>1</PhysicsObjectRestitution>
   <PhysicsObjectGroup>1</PhysicsObjectGroup>
@@ -310,10 +241,7 @@ draw_sprite_ext(rk,0,x,y,1,1,-arctan2(phy_speed_y,phy_speed_x)*180/pi,sii,255);
   <PhysicsObjectAwake>-1</PhysicsObjectAwake>
   <PhysicsObjectKinematic>0</PhysicsObjectKinematic>
   <PhysicsShapePoints>
-    <point>0,0</point>
-    <point>18,4</point>
-    <point>28,10</point>
-    <point>18,16</point>
-    <point>0,20</point>
+    <point>4,4</point>
+    <point>4,0</point>
   </PhysicsShapePoints>
 </object>

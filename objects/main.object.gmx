@@ -28,6 +28,11 @@
             <string>
 global.grid=mp_grid_create(-grid_density/2,-grid_density/2,global.i_1_scr/grid_density+1,global.i_2_scr/grid_density+1,grid_density,grid_density);
 
+globalvar dmode;
+
+dmode=0;
+
+dmo=0;
 
 
 for(i=0;i&lt;=n;i++)for(j=0;j&lt;=m;j++)
@@ -52,10 +57,7 @@ mp_grid_add_instances(global.grid,ins,false);
 }
 }
 
-if(1)
-{
-show_debug_overlay(true);
-}
+
 
 globalvar grid_n;
 globalvar grid_m;
@@ -199,6 +201,7 @@ for(i=1;i&lt;grid_m;i++)
     
 }
 */
+globalvar bonus_matrix;
 
 fil1=file_text_open_write("intrare.txt");
 file_text_write_real(fil1,grid_m-1);
@@ -227,7 +230,6 @@ file_text_close(fil1);
 
 rand_calc("\\AZ_COPY\\intrare.txt", "\\AZ_COPY\\iesire.txt");
 
-external_free("rand00m.dll");
 
 fil1=file_text_open_read("iesire.txt");
 t2x=file_text_read_real(fil1);
@@ -245,6 +247,22 @@ pr6=instance_create(t2y*grid_density,t2x*grid_density,control);
         sii=c_lime;
         }
         
+        
+for(i=1;i&lt;grid_m;i++)
+{
+    for(j=1;j&lt;grid_n;j++)
+    {
+        bonus_matrix[j,i]=grid_matrix[j,i];
+    }
+    
+}
+
+alarm[0]=room_speed*global.bonus_spawn;
+totblocks_bonus=totblocks;
+bonus_count=global.bonus_maximum;
+        
+
+        
 
 
 
@@ -256,12 +274,87 @@ if(totblocks&lt;minblocks)script_execute(new_map);
 
 else script_execute(stepa_init);
 
-globalvar dmode;
-
-dmode=0;
 
 
+background_colour=global.bgcolor;
 
+
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if(totblocks_bonus&gt;0 &amp;&amp; bonus_count&gt;0)
+{
+fil1=file_text_open_write("intrare.txt");
+file_text_write_real(fil1,grid_m-1);
+file_text_writeln(fil1);
+file_text_write_real(fil1,grid_n-1);
+file_text_writeln(fil1);
+file_text_write_real(fil1,totblocks_bonus);
+for(i=1;i&lt;grid_m;i++)
+{
+    file_text_writeln(fil1);
+    for(j=1;j&lt;grid_n;j++)
+    {
+        if(bonus_matrix[j,i]==1)
+        {
+        file_text_write_real(fil1,1);
+        }
+        else file_text_write_real(fil1,0);
+        
+    }
+    
+}
+
+file_text_close(fil1);
+
+
+rand_calc("\\AZ_COPY\\intrare.txt", "\\AZ_COPY\\iesire.txt");
+
+
+fil1=file_text_open_read("iesire.txt");
+bx=file_text_read_real(fil1);
+by=file_text_read_real(fil1);
+file_text_close(fil1);
+
+distxobj=instance_nearest(by*grid_density,bx*grid_density,control);
+
+if(instance_exists(control))
+{
+with(distxobj)other.dist1=distance_to_point(other.by*grid_density,other.bx*grid_density);
+if(dist1&gt;global.bonus_mindist)
+{
+
+pr7=instance_create(by*grid_density,bx*grid_density,bonus);
+pr7.by=by;
+pr7.bx=bx;
+
+bonus_matrix[by,bx]=0;
+totblocks_bonus--;
+bonus_count--;
+}
+}
+}
+alarm[0]=room_speed*global.bonus_spawn;
 </string>
           </argument>
         </arguments>
@@ -292,6 +385,20 @@ dmode=1;
 }
 else dmode=0;
 }
+
+
+if(dmode!=dmo)
+{
+if(dmode)show_debug_overlay(true);
+else show_debug_overlay(false);
+}
+dmo=dmode;
+
+/*if(mouse_check_button_pressed(mb_left))
+{
+instance_create(mouse_x,mouse_y,bonus);
+}
+*/
 </string>
           </argument>
         </arguments>
@@ -321,9 +428,9 @@ mp_grid_draw(global.grid);
 draw_set_alpha(1);
 flag = phy_debug_render_coms | phy_debug_render_shapes ;
 physics_world_draw_debug(flag);
-}
 draw_text(20,20,string(fps));
 draw_text(20,40,string(fps_real));
+}
 </string>
           </argument>
         </arguments>

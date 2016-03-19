@@ -25,53 +25,20 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>cpo=1;
-cpox[0]=x;
-cpoy[0]=y;
-alarm[0]=room_speed*global.lazor_life;
+            <string>alarm[0]=random(global.bomb4_shatter_s_delay*room_speed);
 fix1=physics_fixture_create();
-physics_fixture_set_circle_shape(fix1,global.lazor_radius);
+physics_fixture_set_circle_shape(fix1,global.bomb4_shatter_l);
 physics_fixture_set_friction(fix1,0);
 physics_fixture_set_density(fix1,0.5);
 physics_fixture_set_linear_damping(fix1,0);
+physics_fixture_set_angular_damping(fix1,0);
 physics_fixture_set_restitution(fix1,1);
 physics_fixture_set_collision_group(fix1,0);
 physics_fixture_bind(fix1,id);
-phy_fixed_rotation=1;
-phy_bullet=1;
-has_init=1;
-solved_col=0;
-checkn=0;
-checkm=0;
-sii=c_red;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="1" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if(instance_exists(ign))
-{
-ign.block_fire=0;
-ign.stuck=0;
-ign.weapon_current=0;
-}
+//phy_bullet=1;
+ns=1;
+phy_speed_x=0;
+phy_speed_y=0;
 </string>
           </argument>
         </arguments>
@@ -94,7 +61,7 @@ ign.weapon_current=0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>instance_destroy();
+            <string>ns=0;
 </string>
           </argument>
         </arguments>
@@ -117,77 +84,24 @@ ign.weapon_current=0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(solved_col)
+            <string>if(ns==0)
 {
 iddx=noone;
-iddx=collision_circle(x,y,global.lazor_radius,control,true,true);
+iddx=collision_circle(x,y,global.bomb4_shatter_l,control,true,true);
 if(iddx!=noone)
 {
 if(instance_exists(iddx))with(iddx)instance_destroy();
 instance_destroy();
 }
-}
-
-if(solved_col==0)
-{
-checkn=x+phy_speed_x/phy_speed*global.chkdist*global.lazor_radius;
-checkm=y+phy_speed_y/phy_speed*global.chkdist*global.lazor_radius;
-if(!instance_exists(ign))
-{
-solved_col=1;
-fix1=physics_fixture_create();
-physics_fixture_set_circle_shape(fix1,global.lazor_radius);
-physics_fixture_set_friction(fix1,0);
-physics_fixture_set_density(fix1,5000);
-physics_fixture_set_linear_damping(fix1,0);
-physics_fixture_set_restitution(fix1,1);
-physics_fixture_set_collision_group(fix1,0);
-physics_fixture_bind(fix1,id);
-phy_fixed_rotation=1;
-phy_bullet=1;
-}
-else if((physics_test_overlap(x,y,0,ign)==false || physics_test_overlap(checkn,checkm,0,obj_wall)==true))
-{
-solved_col=1;
-fix1=physics_fixture_create();
-physics_fixture_set_circle_shape(fix1,global.lazor_radius);
-physics_fixture_set_friction(fix1,0);
-physics_fixture_set_density(fix1,5000);
-physics_fixture_set_linear_damping(fix1,0);
-physics_fixture_set_restitution(fix1,1);
-physics_fixture_set_collision_group(fix1,0);
-physics_fixture_bind(fix1,id);
-phy_fixed_rotation=1;
-phy_bullet=1;
-}
-}
 
 
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="obj_wall">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>cpox[cpo]=phy_collision_x[0];
-cpoy[cpo]=phy_collision_y[0];
-cpo++;
+
+if(phy_speed&lt;global.bomb4_shatter_max_speed/room_speed)
+{
+rand_acc=random_range(global.bomb4_shatter_min_accel,global.bomb4_shatter_max_accel);
+physics_apply_impulse(phy_com_x,phy_com_y,rand_acc*cos(angle*pi/180),rand_acc*sin(angle*pi/180));
+}
+}
 </string>
           </argument>
         </arguments>
@@ -210,11 +124,16 @@ cpo++;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_set_colour(c_black);
-//draw_circle(x,y,global.lazor_radius,false);
+            <string>if(ns==0)
+{
+draw_set_colour(c_black);
+//draw_circle(x,y,global.bomb4_shatter_l,false);
+draw_triangle(phy_position_x+global.bomb4_shatter_l*cos(phy_rotation*pi/180),phy_position_y+global.bomb4_shatter_l*sin(phy_rotation*pi/180),
+    phy_position_x+global.bomb4_shatter_l*cos((phy_rotation+120)*pi/180),phy_position_y+global.bomb4_shatter_l*sin((phy_rotation+120)*pi/180),
+    phy_position_x+global.bomb4_shatter_l*cos((phy_rotation+240)*pi/180),phy_position_y+global.bomb4_shatter_l*sin((phy_rotation+240)*pi/180),false);
+    
 //draw_circle(checkn,checkm,global.projectile0_radius/2,false);
-for(f=1;f&lt;cpo;f++)draw_line_width_colour(cpox[f-1],cpoy[f-1],cpox[f],cpoy[f],global.lazor_radius,sii,sii);
-draw_line_width_colour(cpox[cpo-1],cpoy[cpo-1],phy_position_x,phy_position_y,global.lazor_radius,sii,sii);
+}
 </string>
           </argument>
         </arguments>

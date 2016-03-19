@@ -26,6 +26,9 @@
           <argument>
             <kind>1</kind>
             <string>near=instance_nearest(x,y,control);
+if(near==noone)instance_destroy();
+if(near!=noone)
+{
 ox=(near.phy_position_x+grid_density/2) div grid_density;
 oy=(near.phy_position_y+grid_density/2) div grid_density;
 pathx=path_add();
@@ -59,7 +62,7 @@ prx=1;
 }
 path_start(pathx,1,path_action_stop,true);
 
-
+}
 
 </string>
           </argument>
@@ -84,6 +87,9 @@ path_start(pathx,1,path_action_stop,true);
           <argument>
             <kind>1</kind>
             <string>near_new=instance_nearest(x,y,control);
+if(near_new==noone)instance_destroy();
+if(near!=noone)
+{
 cx=(near_new.phy_position_x+grid_density/2) div grid_density;
 cy=(near_new.phy_position_y+grid_density/2) div grid_density;
 
@@ -139,6 +145,7 @@ if(distance_to_object(rocket)!=0)path_speed=global.rocket2_ghost_speed/distance_
 near=near_new;
 ox=cx;
 oy=cy;
+}
 </string>
           </argument>
         </arguments>

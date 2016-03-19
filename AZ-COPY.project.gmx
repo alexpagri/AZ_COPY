@@ -20,6 +20,7 @@
     <sprite>sprites\ball</sprite>
     <sprite>sprites\sprite7</sprite>
     <sprite>sprites\rk</sprite>
+    <sprite>sprites\sprite12</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -27,12 +28,16 @@
     <script>scripts\init.gml</script>
     <script>scripts\new_map.gml</script>
     <script>scripts\stepa_init.gml</script>
+    <script>scripts\offer_bonus.gml</script>
   </scripts>
   <objects name="objects">
     <object>objects\main</object>
     <object>objects\control</object>
     <object>objects\obj_wall</object>
     <object>objects\projectile0</object>
+    <object>objects\bomb4_shatter</object>
+    <object>objects\bonus</object>
+    <object>objects\bomb4</object>
     <object>objects\lazor</object>
     <object>objects\lazor_help</object>
     <object>objects\col_probe</object>

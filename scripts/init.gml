@@ -14,18 +14,31 @@ global.projectile0_life=10;
 global.projectile0_speed=2;
 global.projectile0_radius=3;
 
+global.bomb4_life=10;
+global.bomb4_speed=7;
+global.bomb4_radius=6;
+global.bomb4_shatter_speed=5;
+global.bomb4_shatter_s_delay=0.2;
+global.bomb4_shatter_max_speed=300;
+global.bomb4_shatter_min_accel=5;
+global.bomb4_shatter_max_accel=5;
+global.bomb4_shatter_l=5;
+global.bomb4_shatter_count=12;
+global.bomb4_shatter_chance=3;
+global.bomb4_shatter_ang_imp=1;
+
 global.lazor_help_life=500;
 global.lazor_help_speed=10;
 global.lazor_help_radius=5;
 
 global.lazor_life=0.5;
-global.lazor_speed=30;
-global.lazor_radius=2;
+global.lazor_speed=50;
+global.lazor_radius=3.5;
 
 global.rocket2_life=15;
 global.rocket2_speed=10;
 global.rocket2_radius=8;
-global.rocket2_catch_up=0.03;
+global.rocket2_catch_up=0.05;
 global.rocket2_ghost_speed=5;
 global.rocket2_angdiff=0;
 global.rocket2_init_timer=5;
@@ -36,10 +49,22 @@ global.rocket2_speedup_max=20;
 global.minigun_balls1_life=5;
 global.minigun_balls1_speed=1;
 global.minigun_balls1_radius=2;
-global.minigun_balls1_spinup_time=1.5;
+global.minigun_balls1_spinup_time=0.5;
 global.minigun_balls1_firerate=15;
 global.minigun_balls1_deviation=3;
-global.minigun_balls1_time=15;
+global.minigun_balls1_time=5;
+
+
+global.bgcolor=merge_colour(c_silver,c_white,0.5);
+global.control_speed=40;
+global.control_ang=20;
+global.wall_color=c_dkgray;
+
+
+global.bonus_radius=5;
+global.bonus_maximum=15000;
+global.bonus_spawn=0.01;
+global.bonus_mindist=30;
 
 
 blocksize=32;//must be 2*k, k > Z
