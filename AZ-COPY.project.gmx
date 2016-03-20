@@ -9,18 +9,8 @@
   </NewExtensions>
   <sounds name="sound"/>
   <sprites name="sprites">
-    <sprite>sprites\body</sprite>
-    <sprite>sprites\t_def</sprite>
-    <sprite>sprites\t1</sprite>
     <sprite>sprites\tw</sprite>
-    <sprite>sprites\t2</sprite>
-    <sprite>sprites\wall</sprite>
-    <sprite>sprites\wall_w</sprite>
-    <sprite>sprites\wall_s</sprite>
-    <sprite>sprites\ball</sprite>
-    <sprite>sprites\sprite7</sprite>
     <sprite>sprites\rk</sprite>
-    <sprite>sprites\sprite12</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -49,7 +39,6 @@
   <rooms name="rooms">
     <room>rooms\room0</room>
     <room>rooms\room1</room>
-    <room>rooms\load_wait</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
