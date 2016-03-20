@@ -77,6 +77,11 @@ if(mp_grid_get_cell(global.grid,loc_n,loc_m)!=-1)
 p=1;
 pr6=instance_create(loc_n*grid_density,loc_m*grid_density,control);
 pr6.sii=c_red;
+pr7=instance_create(0,0,score);
+pr6.sid=pr7;
+pr7.sii=c_red;
+pr7.ign=pr6;
+pr7.sid=0;
 }
 }
 
@@ -246,6 +251,11 @@ pr6=instance_create(t2y*grid_density,t2x*grid_density,control);
         key_fire=ord('M');
         sii=c_lime;
         }
+pr7=instance_create(0,0,score);
+pr6.sid=pr7;
+pr7.sii=c_lime;
+pr7.ign=pr6;
+pr7.sid=1;
         
         
 for(i=1;i&lt;grid_m;i++)
@@ -280,6 +290,29 @@ background_colour=global.bgcolor;
 
 
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>script_execute(new_map);
 </string>
           </argument>
         </arguments>
@@ -399,6 +432,35 @@ dmo=dmode;
 instance_create(mouse_x,mouse_y,bonus);
 }
 */
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="64">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>draw_set_font(font0);
+draw_set_colour(c_red);
+draw_text(10,10,string(score2[0]));
+draw_set_colour(c_black);
+draw_text(40,10,"-");
+draw_set_colour(c_lime);
+draw_text(70,10,string(score2[1]));
 </string>
           </argument>
         </arguments>

@@ -8,6 +8,19 @@ globalvar wall_length;
 globalvar minblocks;
 globalvar grid_matrix;
 
+
+if(score1[0]!=0 || score1[1]!=0)
+{
+
+score2[0]+=score1[0]+1;
+score2[1]+=score1[1]+1;
+
+}
+
+score1[0]=0;
+score1[1]=0;
+
+
 global.sdist=0;
 global.chkdist=1;
 global.projectile0_life=10;
@@ -66,6 +79,8 @@ global.bonus_thick=2;
 global.bonus_maximum=50;
 global.bonus_spawn=3;
 global.bonus_mindist=30;
+
+global.delay_tillend=5;
 
 
 global.xdist=64;

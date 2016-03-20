@@ -20,6 +20,9 @@
     <script>scripts\stepa_init.gml</script>
     <script>scripts\offer_bonus.gml</script>
   </scripts>
+  <fonts name="fonts">
+    <font>fonts\font0</font>
+  </fonts>
   <objects name="objects">
     <object>objects\main</object>
     <object>objects\control</object>
@@ -35,8 +38,10 @@
     <object>objects\minigun_balls1</object>
     <object>objects\path_follower</object>
     <object>objects\test_blocks</object>
+    <object>objects\score</object>
   </objects>
   <rooms name="rooms">
+    <room>rooms\room2</room>
     <room>rooms\room0</room>
     <room>rooms\room1</room>
   </rooms>
