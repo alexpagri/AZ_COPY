@@ -61,9 +61,10 @@ global.control_ang=20;
 global.wall_color=c_dkgray;
 
 
-global.bonus_radius=5;
-global.bonus_maximum=15000;
-global.bonus_spawn=0.01;
+global.bonus_radius=10;
+global.bonus_thick=2;
+global.bonus_maximum=50;
+global.bonus_spawn=3;
 global.bonus_mindist=30;
 
 
