@@ -68,6 +68,10 @@ global.bonus_spawn=3;
 global.bonus_mindist=30;
 
 
+global.xdist=64;
+global.ydist=64;
+
+
 blocksize=32;//must be 2*k, k > Z
 
 minblocks=500;
@@ -75,8 +79,8 @@ minblocks=500;
 grid_density=16;//must be 2*k, k > Z
 //32*20=640
 //32*15=480
-maxw=1280;
-maxh=720;
+maxw=1024;
+maxh=768;
 minw=640;
 minh=480;
 chance=irandom_range(30,70);

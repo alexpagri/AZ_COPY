@@ -456,7 +456,7 @@ draw_circle(phy_position_x+global.sdist*cos(phy_rotation*pi/180)+1-global.projec
   <PhysicsObjectGroup>0</PhysicsObjectGroup>
   <PhysicsObjectLinearDamping>50</PhysicsObjectLinearDamping>
   <PhysicsObjectAngularDamping>50</PhysicsObjectAngularDamping>
-  <PhysicsObjectFriction>1</PhysicsObjectFriction>
+  <PhysicsObjectFriction>0</PhysicsObjectFriction>
   <PhysicsObjectAwake>-1</PhysicsObjectAwake>
   <PhysicsObjectKinematic>0</PhysicsObjectKinematic>
   <PhysicsShapePoints>

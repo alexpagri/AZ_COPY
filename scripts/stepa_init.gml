@@ -7,6 +7,17 @@ room_height=global.i_2_scr;
 
 room_width=global.i_1_scr;
 
+maxroom=max(global.i_2_scr,global.i_1_scr);
+
+view_visible[0]=true;
+view_enabled=true;
+view_xview[0]=(-global.xdist);
+view_yview[0]=(-global.ydist);
+view_wview[0]=global.i_1_scr+2*global.xdist;
+view_hview[0]=global.i_2_scr+2*global.ydist;
+
+
+
 
 
 
@@ -15,8 +26,8 @@ room_width=global.i_1_scr;
 
 application_surface_enable(false);//!!!!!!!!!!!!!!! REM ! Global game settings!
 
-display_set_gui_size(global.i_1_scr,global.i_2_scr);
-window_set_size(global.i_1_scr,global.i_2_scr);
+display_set_gui_size(global.i_1_scr+2*global.xdist,global.i_2_scr+2*global.ydist);
+window_set_size(global.i_1_scr+2*global.xdist,global.i_2_scr+2*global.ydist);
 //window_set_rectangle(0,0,global.i_1_scr,global.i_2_scr);
 display_set_gui_maximise(1,1,0,0);
 display_reset(8,false);
