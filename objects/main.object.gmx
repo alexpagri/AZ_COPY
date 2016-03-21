@@ -34,6 +34,8 @@ dmode=0;
 
 dmo=0;
 
+show_debug_overlay(false);
+
 
 for(i=0;i&lt;=n;i++)for(j=0;j&lt;=m;j++)
 {
@@ -77,11 +79,7 @@ if(mp_grid_get_cell(global.grid,loc_n,loc_m)!=-1)
 p=1;
 pr6=instance_create(loc_n*grid_density,loc_m*grid_density,control);
 pr6.sii=c_red;
-pr7=instance_create(0,0,score);
-pr6.sid=pr7;
-pr7.sii=c_red;
-pr7.ign=pr6;
-pr7.sid=0;
+pr6.sid=0;
 }
 }
 
@@ -251,11 +249,7 @@ pr6=instance_create(t2y*grid_density,t2x*grid_density,control);
         key_fire=ord('M');
         sii=c_lime;
         }
-pr7=instance_create(0,0,score);
-pr6.sid=pr7;
-pr7.sii=c_lime;
-pr7.ign=pr6;
-pr7.sid=1;
+pr6.sid=1;
         
         
 for(i=1;i&lt;grid_m;i++)
@@ -289,7 +283,29 @@ else script_execute(stepa_init);
 background_colour=global.bgcolor;
 
 
-
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="2">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>script_execute(new_map);
 </string>
           </argument>
         </arguments>
@@ -312,7 +328,16 @@ background_colour=global.bgcolor;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>script_execute(new_map);
+            <string>with(control)
+{
+score2[sid]++;
+stuck=1;
+block_fire=1;
+}
+bonus_count=0;
+is_ending=1;
+physics_pause_enable(true);
+alarm[2]=room_speed*global.cooldown_tillend;
 </string>
           </argument>
         </arguments>
@@ -427,11 +452,12 @@ else show_debug_overlay(false);
 }
 dmo=dmode;
 
-/*if(mouse_check_button_pressed(mb_left))
+if(mouse_check_button_pressed(mb_left))
 {
-instance_create(mouse_x,mouse_y,bonus);
+//instance_create(mouse_x,mouse_y,bonus);
+if(!instance_exists(shake) &amp;&amp; debug_mode)instance_create(0,0,shake);
 }
-*/
+
 </string>
           </argument>
         </arguments>
@@ -459,8 +485,13 @@ draw_set_colour(c_red);
 draw_text(10,10,string(score2[0]));
 draw_set_colour(c_black);
 draw_text(40,10,"-");
-draw_set_colour(c_lime);
+draw_set_colour(c_green);
 draw_text(70,10,string(score2[1]));
+draw_set_colour(c_black);
+if(alarm[1]/room_speed&gt;0)draw_text(140,10,string(alarm[1]/room_speed));
+else draw_text(140,10,string(global.delay_tillend));
+if(alarm[2]/room_speed&gt;0)draw_text(210,10,string(alarm[2]/room_speed));
+else draw_text(210,10,string(global.cooldown_tillend));
 </string>
           </argument>
         </arguments>
@@ -515,7 +546,7 @@ draw_text(20,40,string(fps_real));
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>script_execute(new_map);
+            <string>if(debug_mode)script_execute(new_map);
 </string>
           </argument>
         </arguments>

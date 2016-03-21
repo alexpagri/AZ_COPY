@@ -86,8 +86,11 @@ lazor_helper=0;
             <string>if(instance_exists(cr_l_helper))with(cr_l_helper)instance_destroy();
 if(instance_exists(pr1))with(pr1)instance_destroy();
 if(instance_exists(pr2))with(pr2)instance_destroy();
-if(main.alarm[1]&lt;0)main.alarm[1]=room_speed*global.delay_tillend;
-with(sid)event_user(0);
+//if(main.alarm[1]&lt;0)
+main.alarm[1]=room_speed*global.delay_tillend;
+if(!instance_exists(shake))instance_create(0,0,shake);
+//with(sid)event_user(0);
+
 </string>
           </argument>
         </arguments>
@@ -199,36 +202,36 @@ physics_apply_angular_impulse(ang_forces);
 }
 
 
-/*if(keyboard_check_pressed(ord('0')))
+if(debug_mode&amp;&amp;keyboard_check_pressed(ord('0')))
 {
 weapon_current=0;
 block_fire=0;
 pr5=noone;
 }
-if(keyboard_check_pressed(ord('1')))
+if(debug_mode&amp;&amp;keyboard_check_pressed(ord('1')))
 {
 weapon_current=1;
 block_fire=0;
 pr5=noone;
 }
-if(keyboard_check_pressed(ord('2')))
+if(debug_mode&amp;&amp;keyboard_check_pressed(ord('2')))
 {
 weapon_current=2;
 block_fire=0;
 pr5=noone;
 }
-if(keyboard_check_pressed(ord('3')))
+if(debug_mode&amp;&amp;keyboard_check_pressed(ord('3')))
 {
 weapon_current=3;
 block_fire=0;
 pr5=noone;
 }
-if(keyboard_check_pressed(ord('4')))
+if(debug_mode&amp;&amp;keyboard_check_pressed(ord('4')))
 {
 weapon_current=4;
 block_fire=0;
 pr5=noone;
-}*/
+}
 
 
 
@@ -318,7 +321,7 @@ else if(!instance_exists(pr5))detonate=0;
 }
 
 
-if(keyboard_check_pressed(key_fire))
+if(keyboard_check_pressed(key_fire) &amp;&amp; stuck==0)
 {
 if(instance_exists(pr5) &amp;&amp; weapon_current==4)pr5.alarm[0]=1;
 }
@@ -335,7 +338,7 @@ minigun_end=0;
 
 
 
-if(keyboard_check(key_fire) &amp;&amp; block_fire==0 &amp;&amp; detonate==0)
+if(keyboard_check(key_fire) &amp;&amp; block_fire==0 &amp;&amp; detonate==0 &amp;&amp; stuck==0)
 {
 if(weapon_current==0)
     {

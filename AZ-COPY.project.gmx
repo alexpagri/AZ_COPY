@@ -38,7 +38,8 @@
     <object>objects\minigun_balls1</object>
     <object>objects\path_follower</object>
     <object>objects\test_blocks</object>
-    <object>objects\score</object>
+    <object>objects\score_obj</object>
+    <object>objects\shake</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room2</room>

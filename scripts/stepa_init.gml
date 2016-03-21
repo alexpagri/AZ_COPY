@@ -30,7 +30,7 @@ display_set_gui_size(global.i_1_scr+2*global.xdist,global.i_2_scr+2*global.ydist
 window_set_size(global.i_1_scr+2*global.xdist,global.i_2_scr+2*global.ydist);
 //window_set_rectangle(0,0,global.i_1_scr,global.i_2_scr);
 display_set_gui_maximise(1,1,0,0);
-display_reset(8,false);
+display_reset(4,false);
 
 
 switch (os_type)

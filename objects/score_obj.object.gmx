@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>score1[sid]--;
+            <string>//score2[sid]--;
 </string>
           </argument>
         </arguments>

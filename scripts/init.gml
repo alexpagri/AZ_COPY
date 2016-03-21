@@ -7,24 +7,47 @@ globalvar wall_width;
 globalvar wall_length;
 globalvar minblocks;
 globalvar grid_matrix;
+globalvar score2;
+globalvar is_ending;
+
+is_ending=0;
 
 
-if(score1[0]!=0 || score1[1]!=0)
-{
+score2[0]=0;
+score2[1]=0;
 
-score2[0]+=score1[0]+1;
-score2[1]+=score1[1]+1;
+fil1=file_text_open_read("globals.txt");
+d1=file_text_read_real(fil1);
+d2=file_text_read_real(fil1);
+file_text_close(fil1);
 
-}
 
-score1[0]=0;
-score1[1]=0;
+//if(d1!=0 || d2!=0)
+//{
+
+score2[0]=d1;
+score2[1]=d2;
+
+//}
+
+d1=0;
+d2=0;
+
+
+
+
+global.shake_tottime=3;
+global.shake_mag=0.01;
+global.shake_freq=3;
+
+
+
 
 
 global.sdist=0;
 global.chkdist=1;
 global.projectile0_life=10;
-global.projectile0_speed=2;
+global.projectile0_speed=3;
 global.projectile0_radius=3;
 
 global.bomb4_life=10;
@@ -51,13 +74,13 @@ global.lazor_radius=3.5;
 global.rocket2_life=15;
 global.rocket2_speed=10;
 global.rocket2_radius=8;
-global.rocket2_catch_up=0.05;
-global.rocket2_ghost_speed=5;
+global.rocket2_catch_up=0.1;
+global.rocket2_ghost_speed=15;
 global.rocket2_angdiff=0;
-global.rocket2_init_timer=5;
-global.rocket2_speedup_timer=6;
-global.rocket2_speedup_factor=0.0001;
-global.rocket2_speedup_max=20;
+global.rocket2_init_timer=3;
+global.rocket2_speedup_timer=3.1;//>global.rocket2_init_timer
+global.rocket2_speedup_factor=0.01;
+global.rocket2_speedup_max=500;
 
 global.minigun_balls1_life=5;
 global.minigun_balls1_speed=1;
@@ -80,14 +103,15 @@ global.bonus_maximum=50;
 global.bonus_spawn=3;
 global.bonus_mindist=30;
 
-global.delay_tillend=5;
+global.delay_tillend=3;
+global.cooldown_tillend=2;
 
 
-global.xdist=64;
+global.xdist=0;
 global.ydist=64;
 
 
-blocksize=32;//must be 2*k, k > Z
+blocksize=32;//must be 2*k, k > Z   //32
 
 minblocks=500;
 
@@ -98,10 +122,13 @@ maxw=1024;
 maxh=768;
 minw=640;
 minh=480;
-chance=irandom_range(30,70);
-chance_w=irandom_range(30,70);
+chance=irandom_range(30,60);
+chance_w=irandom_range(30,60);
 wall_width=4;
 wall_length=68;
+
+//global.i_1_scr=2*blocksize*irandom_range(minw/blocksize/2,maxw/blocksize/2);
+//global.i_2_scr=2*blocksize*irandom_range(minh/blocksize/2,maxh/blocksize/2);
 
 global.i_1_scr=2*blocksize*irandom_range(minw/blocksize/2,maxw/blocksize/2);
 global.i_2_scr=2*blocksize*irandom_range(minh/blocksize/2,maxh/blocksize/2);

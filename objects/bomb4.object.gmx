@@ -68,6 +68,7 @@ ign.block_fire=0;
 ign.weapon_current=0;
 }
 
+if(!instance_exists(shake))instance_create(0,0,shake);
 
 for(i=0;i&lt;global.bomb4_shatter_count;i++)
 {
@@ -103,7 +104,7 @@ with(pr5)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>instance_destroy();
+            <string>if(is_ending==0)instance_destroy();
 
 
 </string>
