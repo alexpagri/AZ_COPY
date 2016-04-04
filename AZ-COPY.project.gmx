@@ -19,6 +19,7 @@
     <script>scripts\new_map.gml</script>
     <script>scripts\stepa_init.gml</script>
     <script>scripts\offer_bonus.gml</script>
+    <script>scripts\ini_tialise.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\font0</font>

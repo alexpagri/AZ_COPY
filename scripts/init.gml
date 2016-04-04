@@ -34,7 +34,7 @@ d1=0;
 d2=0;
 
 
-
+/*
 
 global.shake_tottime=3;
 global.shake_mag=0.01;
@@ -110,22 +110,20 @@ global.cooldown_tillend=2;
 global.xdist=0;
 global.ydist=64;
 
+global.aa=4;
 
-blocksize=32;//must be 2*k, k > Z   //32
+*/
 
-minblocks=500;
+script_execute(ini_tialise);
 
-grid_density=16;//must be 2*k, k > Z
+
+
 //32*20=640
 //32*15=480
-maxw=1024;
-maxh=768;
-minw=640;
-minh=480;
+
+
 chance=irandom_range(30,60);
 chance_w=irandom_range(30,60);
-wall_width=4;
-wall_length=68;
 
 //global.i_1_scr=2*blocksize*irandom_range(minw/blocksize/2,maxw/blocksize/2);
 //global.i_2_scr=2*blocksize*irandom_range(minh/blocksize/2,maxh/blocksize/2);
