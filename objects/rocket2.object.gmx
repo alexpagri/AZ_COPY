@@ -49,6 +49,7 @@ pf=noone;
 globalvar speedf;
 globalvar xty;
 globalvar xtz;
+no_score=0;
 </string>
           </argument>
         </arguments>
@@ -179,6 +180,11 @@ iddx=collision_circle(x,y,global.rocket2_radius,control,true,true);
 if(iddx!=noone)
 {
 if(instance_exists(iddx))with(iddx)instance_destroy();
+if(no_score==0)
+{
+if(iddx==ign)score2[sid]+=global.suicide_score_modif;
+else {if(instance_exists(ign))score2[sid]++;else score2[sid]+=global.score_dead;}
+}
 instance_destroy();
 }
 }

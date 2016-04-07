@@ -39,6 +39,7 @@ physics_fixture_bind(fix1,id);
 ns=1;
 phy_speed_x=0;
 phy_speed_y=0;
+no_score=0;
 </string>
           </argument>
         </arguments>
@@ -91,6 +92,11 @@ iddx=collision_circle(x,y,global.bomb4_shatter_l,control,true,true);
 if(iddx!=noone)
 {
 if(instance_exists(iddx))with(iddx)instance_destroy();
+if(no_score==0)
+{
+if(iddx==ign)score2[sid]+=global.suicide_score_modif;
+else {if(instance_exists(ign))score2[sid]++;else score2[sid]+=global.score_dead;}
+}
 instance_destroy();
 }
 

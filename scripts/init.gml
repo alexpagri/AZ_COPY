@@ -7,31 +7,30 @@ globalvar wall_width;
 globalvar wall_length;
 globalvar minblocks;
 globalvar grid_matrix;
-globalvar score2;
 globalvar is_ending;
 
 is_ending=0;
 
 
-score2[0]=0;
-score2[1]=0;
+//score2[0]=0;
+//score2[1]=0;
 
-fil1=file_text_open_read("globals.txt");
-d1=file_text_read_real(fil1);
-d2=file_text_read_real(fil1);
-file_text_close(fil1);
+//fil1=file_text_open_read("globals.txt");
+//d1=file_text_read_real(fil1);
+//d2=file_text_read_real(fil1);
+//file_text_close(fil1);
 
 
 //if(d1!=0 || d2!=0)
 //{
 
-score2[0]=d1;
-score2[1]=d2;
+//score2[0]=d1;
+//score2[1]=d2;
 
 //}
 
-d1=0;
-d2=0;
+//d1=0;
+//d2=0;
 
 
 /*

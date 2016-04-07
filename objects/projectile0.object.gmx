@@ -40,6 +40,7 @@ has_init=1;
 solved_col=0;
 checkn=0;
 checkm=0;
+no_score=0;
 </string>
           </argument>
         </arguments>
@@ -115,6 +116,11 @@ iddx=collision_circle(x,y,global.projectile0_radius,control,true,true);
 if(iddx!=noone)
 {
 if(instance_exists(iddx))with(iddx)instance_destroy();
+if(no_score==0)
+{
+if(iddx==ign)score2[sid]+=global.suicide_score_modif;
+else {if(instance_exists(ign))score2[sid]++;else score2[sid]+=global.score_dead;}
+}
 instance_destroy();
 }
 }

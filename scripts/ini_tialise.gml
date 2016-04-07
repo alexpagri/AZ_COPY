@@ -9,13 +9,21 @@ ini_open("settings.ini");
 
 
 
+ini_write_real("settings", "suicide_score_modif", -1);
+
+
+ini_write_real("settings", "score_dead", 1);
+
+
+ini_write_real("settings", "multi_removeall", 1);
+
 ini_write_real("settings", "blocksize", 32);
 
 ini_write_real("settings", "minblocks", 500);
 
 ini_write_real("settings", "grid_density", 16);
-ini_write_real("settings", "maxw", 1024);
-ini_write_real("settings", "maxh", 768);
+ini_write_real("settings", "maxw", 800);
+ini_write_real("settings", "maxh", 600);
 ini_write_real("settings", "minw", 640);
 ini_write_real("settings", "minh", 480);
 ini_write_real("settings", "wall_width", 4);
@@ -36,9 +44,9 @@ ini_write_real("settings", "shake_freq", 3);
 
 
 
-ini_write_real("settings", "sdist", 0);
+ini_write_real("settings", "sdist", 16);
 ini_write_real("settings", "chkdist", 1);
-ini_write_real("settings", "projectile0_life", 10);
+ini_write_real("settings", "projectile0_life", 7);
 ini_write_real("settings", "projectile0_speed", 3);
 ini_write_real("settings", "projectile0_radius", 3);
 
@@ -47,11 +55,11 @@ ini_write_real("settings", "bomb4_speed", 7);
 ini_write_real("settings", "bomb4_radius", 6);
 ini_write_real("settings", "bomb4_shatter_speed", 5);
 ini_write_real("settings", "bomb4_shatter_s_delay", 0.2);
-ini_write_real("settings", "bomb4_shatter_max_speed", 300);
+ini_write_real("settings", "bomb4_shatter_max_speed", 150);
 ini_write_real("settings", "bomb4_shatter_min_accel", 5);
 ini_write_real("settings", "bomb4_shatter_max_accel", 5);
 ini_write_real("settings", "bomb4_shatter_l", 5);
-ini_write_real("settings", "bomb4_shatter_count", 12);
+ini_write_real("settings", "bomb4_shatter_count", 40);
 ini_write_real("settings", "bomb4_shatter_chance", 3);
 ini_write_real("settings", "bomb4_shatter_ang_imp", 1);
 
@@ -64,7 +72,7 @@ ini_write_real("settings", "lazor_speed", 50);
 ini_write_real("settings", "lazor_radius", 3.5);
 
 ini_write_real("settings", "rocket2_life", 15);
-ini_write_real("settings", "rocket2_speed", 10);
+ini_write_real("settings", "rocket2_speed", 20);
 ini_write_real("settings", "rocket2_radius", 8);
 ini_write_real("settings", "rocket2_catch_up", 0.1);
 ini_write_real("settings", "rocket2_ghost_speed", 15);
@@ -72,13 +80,13 @@ ini_write_real("settings", "rocket2_angdiff", 0);
 ini_write_real("settings", "rocket2_init_timer", 3);
 ini_write_real("settings", "rocket2_speedup_timer", 3.1);
 ini_write_real("settings", "rocket2_speedup_factor", 0.01);
-ini_write_real("settings", "rocket2_speedup_max", 500);
+ini_write_real("settings", "rocket2_speedup_max", 300);
 
 ini_write_real("settings", "minigun_balls1_life", 5);
 ini_write_real("settings", "minigun_balls1_speed", 1);
 ini_write_real("settings", "minigun_balls1_radius", 2);
-ini_write_real("settings", "minigun_balls1_spinup_time", 0.5);
-ini_write_real("settings", "minigun_balls1_firerate", 15);
+ini_write_real("settings", "minigun_balls1_spinup_time", 0.35);
+ini_write_real("settings", "minigun_balls1_firerate", 25);
 ini_write_real("settings", "minigun_balls1_deviation", 3);
 ini_write_real("settings", "minigun_balls1_time", 5);
 
@@ -96,7 +104,7 @@ ini_write_real("settings", "bonus_spawn", 3);
 ini_write_real("settings", "bonus_mindist", 30);
 
 ini_write_real("settings", "delay_tillend", 3);
-ini_write_real("settings", "cooldown_tillend", 2);
+ini_write_real("settings", "cooldown_tillend", 0.5);
 
 
 ini_write_real("settings", "xdist", 0);
@@ -111,6 +119,18 @@ ini_open("settings.ini");
 
 //DO NOT EDIT HERE
 
+
+
+
+
+global.suicide_score_modif=ini_read_real("settings", "suicide_score_modif", 0);
+
+
+
+global.score_dead=ini_read_real("settings", "score_dead", 0);
+
+
+global.multi_removeall=ini_read_real("settings", "multi_removeall", 0);
 
 
 blocksize=ini_read_real("settings", "blocksize", 0);
@@ -223,7 +243,6 @@ ini_close();
 
 
 ////////////////////////////////////////////////////////////////////////////
-
 
 
 

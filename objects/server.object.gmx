@@ -229,8 +229,6 @@ for(i=1;i&lt;grid_m;i++)
 
 file_text_close(fil1);
 
-if(sp)
-{
 
 
 rand_calc("\\AZ_COPY\\intrare.txt", "\\AZ_COPY\\iesire.txt");
@@ -252,9 +250,6 @@ pr6=instance_create(t2y*grid_density,t2x*grid_density,control);
         sii=c_lime;
         }
 pr6.sid=1;
-
-
-}
         
         
 for(i=1;i&lt;grid_m;i++)
@@ -265,8 +260,6 @@ for(i=1;i&lt;grid_m;i++)
     }
     
 }
-
-globalvar totblocks_bonus;
 
 alarm[0]=room_speed*global.bonus_spawn;
 totblocks_bonus=totblocks;
@@ -283,10 +276,7 @@ bonus_count=global.bonus_maximum;
 room_persistent=1;
 if(totblocks&lt;minblocks)script_execute(new_map);
 
-else {
-with(v_client)event_user(0);
-script_execute(stepa_init);
-}
+else script_execute(stepa_init);
 
 
 
@@ -340,7 +330,7 @@ background_colour=global.bgcolor;
             <kind>1</kind>
             <string>with(control)
 {
-//score2[sid]++;
+score2[sid]++;
 stuck=1;
 block_fire=1;
 }
@@ -468,9 +458,6 @@ if(mouse_check_button_pressed(mb_left))
 if(!instance_exists(shake) &amp;&amp; debug_mode)instance_create(0,0,shake);
 }
 
-
-
-
 </string>
           </argument>
         </arguments>
@@ -493,9 +480,7 @@ if(!instance_exists(shake) &amp;&amp; debug_mode)instance_create(0,0,shake);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(sp)
-{
-draw_set_font(font0);
+            <string>draw_set_font(font0);
 draw_set_colour(c_red);
 draw_text(10,10,string(score2[0]));
 draw_set_colour(c_black);
@@ -507,22 +492,6 @@ if(alarm[1]/room_speed&gt;0)draw_text(140,10,string(alarm[1]/room_speed));
 else draw_text(140,10,string(global.delay_tillend));
 if(alarm[2]/room_speed&gt;0)draw_text(210,10,string(alarm[2]/room_speed));
 else draw_text(210,10,string(global.cooldown_tillend));
-}
-else
-{
-draw_set_font(font0);
-draw_set_colour(c_black);
-for(yu=0;yu&lt;assign_id;yu++)
-{
-draw_text(10 + yu*60,10,string(score2[yu]));
-}
-for(yu=1;yu&lt;assign_id;yu++)draw_text(40 + (yu-1)*60,10,"-");
-draw_set_colour(c_black);
-if(alarm[1]/room_speed&gt;0)draw_text(10 + assign_id*60,10,string(alarm[1]/room_speed));
-else draw_text(10 + assign_id*60,10,string(global.delay_tillend));
-if(alarm[2]/room_speed&gt;0)draw_text(80 + assign_id*60,10,string(alarm[2]/room_speed));
-else draw_text(80 + assign_id*60,10,string(global.cooldown_tillend));
-}
 </string>
           </argument>
         </arguments>

@@ -40,6 +40,8 @@ has_init=1;
 solved_col=0;
 checkn=0;
 checkm=0;
+no_deploy=0;
+no_score=0;
 </string>
           </argument>
         </arguments>
@@ -62,7 +64,9 @@ checkm=0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(instance_exists(ign))
+            <string>if(no_deploy==0)
+{
+if(instance_exists(ign))
 {
 ign.block_fire=0;
 ign.weapon_current=0;
@@ -73,6 +77,8 @@ if(!instance_exists(shake))instance_create(0,0,shake);
 for(i=0;i&lt;global.bomb4_shatter_count;i++)
 {
 pr5=instance_create(phy_position_x,phy_position_y,bomb4_shatter);
+pr5.ign=ign;
+pr5.sid=sid;
 angle=random(360);
 rand=random(global.bomb4_shatter_speed);
 pr5.angle=angle;
@@ -81,6 +87,7 @@ with(pr5)
     //physics_apply_impulse(phy_com_x,phy_com_y,other.rand*cos(other.angle*pi/180),other.rand*sin(other.angle*pi/180));
     physics_apply_angular_impulse(global.bomb4_shatter_ang_imp);
     }
+}
 }
 </string>
           </argument>
@@ -136,6 +143,11 @@ iddx=collision_circle(x,y,global.bomb4_radius,control,true,true);
 if(iddx!=noone)
 {
 if(instance_exists(iddx))with(iddx)instance_destroy();
+if(no_score==0)
+{
+if(iddx==ign)score2[sid]+=global.suicide_score_modif;
+else {if(instance_exists(ign))score2[sid]++;else score2[sid]+=global.score_dead;}
+}
 instance_destroy();
 }
 }

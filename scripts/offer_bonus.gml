@@ -10,4 +10,4 @@ pr5=noone;
 
 bonus_matrix[argument2,argument3]=1;
 main.bonus_count++;
-main.totblocks_bonus++;
+totblocks_bonus++;

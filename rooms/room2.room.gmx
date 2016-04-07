@@ -10,12 +10,16 @@
   <persistent>0</persistent>
   <colour>12632256</colour>
   <showcolour>-1</showcolour>
-  <code>fil1=file_text_open_write("globals.txt");
-file_text_write_real(fil1,0);
-file_text_write_real(fil1,0);
-file_text_close(fil1);
+  <code>//fil1=file_text_open_write("globals.txt");
+//file_text_write_real(fil1,0);
+//file_text_write_real(fil1,0);
+//file_text_close(fil1);
 file_delete("settings.ini");
-room_goto(room0);</code>
+globalvar score2;
+score2[0]=0;
+score2[1]=0;
+instance_create(0,0,men);
+//room_goto(room0);</code>
   <enableViews>0</enableViews>
   <clearViewBackground>-1</clearViewBackground>
   <clearDisplayBuffer>-1</clearDisplayBuffer>

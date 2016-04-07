@@ -61,6 +61,8 @@ key_fire=ord('Q');
 // 4 (bomb4)
 weapon_current=0;
 lazor_helper=0;
+
+h_key=1;
 </string>
           </argument>
         </arguments>
@@ -87,9 +89,10 @@ lazor_helper=0;
 if(instance_exists(pr1))with(pr1)instance_destroy();
 if(instance_exists(pr2))with(pr2)instance_destroy();
 //if(main.alarm[1]&lt;0)
-main.alarm[1]=room_speed*global.delay_tillend;
+if(instance_number(control)&lt;=2)main.alarm[1]=room_speed*global.delay_tillend;
 if(!instance_exists(shake))instance_create(0,0,shake);
 //with(sid)event_user(0);
+
 
 </string>
           </argument>
@@ -184,19 +187,19 @@ minigun_end=1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(keyboard_check(key_up) &amp;&amp; stuck==0)
+            <string>if(keyboard_check(key_up) &amp;&amp; stuck==0 &amp;&amp; h_key)
 {
 physics_apply_impulse(phy_com_x,phy_com_y,forces*cos(phy_rotation*pi/180),forces*sin(phy_rotation*pi/180));
 }
-if(keyboard_check(key_left) &amp;&amp; stuck==0)
+if(keyboard_check(key_left) &amp;&amp; stuck==0 &amp;&amp; h_key)
 {
 physics_apply_angular_impulse(-ang_forces);
 }
-if(keyboard_check(key_down) &amp;&amp; stuck==0)
+if(keyboard_check(key_down) &amp;&amp; stuck==0 &amp;&amp; h_key)
 {
 physics_apply_impulse(phy_com_x,phy_com_y,-back_forces*cos(phy_rotation*pi/180),-back_forces*sin(phy_rotation*pi/180));
 }
-if(keyboard_check(key_right) &amp;&amp; stuck==0)
+if(keyboard_check(key_right) &amp;&amp; stuck==0 &amp;&amp; h_key)
 {
 physics_apply_angular_impulse(ang_forces);
 }
@@ -241,7 +244,7 @@ global.gron=1;
 }
 else global.gron=0;
 
-if(keyboard_check_pressed(ord('L')))
+if(keyboard_check_pressed(ord('L')) &amp;&amp; false)////////////////////////////////////////////////////////////////////////lazor_helper OUTDATED - TO BE REMOVED?
 {
 if (lazor_helper==0)
 {
@@ -338,13 +341,14 @@ minigun_end=0;
 
 
 
-if(keyboard_check(key_fire) &amp;&amp; block_fire==0 &amp;&amp; detonate==0 &amp;&amp; stuck==0)
+if(keyboard_check(key_fire) &amp;&amp; block_fire==0 &amp;&amp; detonate==0 &amp;&amp; stuck==0 &amp;&amp; h_key)
 {
 if(weapon_current==0)
     {
     pr5=instance_create(phy_position_x+global.sdist*cos(phy_rotation*pi/180)+1-global.projectile0_radius/2,phy_position_y+global.sdist*sin(phy_rotation*pi/180)+1-global.projectile0_radius/2,projectile0);
     with(pr5)physics_apply_impulse(phy_com_x,phy_com_y,global.projectile0_speed*cos(other.phy_rotation*pi/180),global.projectile0_speed*sin(other.phy_rotation*pi/180));
     pr5.ign=id;
+    pr5.sid=sid;
     block_fire=1;
     }
 else if(weapon_current==1)
@@ -355,6 +359,7 @@ else if(weapon_current==1)
         pr5=instance_create(phy_position_x+global.sdist*cos(phy_rotation*pi/180)+1-global.minigun_balls1_radius/2,phy_position_y+global.sdist*sin(phy_rotation*pi/180)+1-global.minigun_balls1_radius/2,minigun_balls1);
         with(pr5)physics_apply_impulse(phy_com_x,phy_com_y,global.minigun_balls1_speed*cos((random_range(-global.minigun_balls1_deviation,global.minigun_balls1_deviation)+other.phy_rotation)*pi/180),global.minigun_balls1_speed*sin((random_range(-global.minigun_balls1_deviation,global.minigun_balls1_deviation)+other.phy_rotation)*pi/180));
         pr5.ign=id;
+        pr5.sid=sid;
         this_spinup-=1/global.minigun_balls1_firerate;
         }
     if(minigun_init==0)alarm[2]=global.minigun_balls1_time*room_speed;
@@ -365,6 +370,7 @@ else if(weapon_current==2)
     pr5=instance_create(phy_position_x+global.sdist*cos(phy_rotation*pi/180),phy_position_y+global.sdist*sin(phy_rotation*pi/180),rocket2);
     with(pr5)physics_apply_impulse(phy_com_x,phy_com_y,global.rocket2_speed*cos(other.phy_rotation*pi/180),global.rocket2_speed*sin(other.phy_rotation*pi/180));
     pr5.ign=id;
+    pr5.sid=sid;
     pr5.sii=sii;
     block_fire=1;
     }
@@ -373,6 +379,7 @@ else if(weapon_current==3)
     pr5=instance_create(phy_position_x+global.sdist*cos(phy_rotation*pi/180)+1-global.lazor_radius/2,phy_position_y+global.sdist*sin(phy_rotation*pi/180)+1-global.lazor_radius/2,lazor);
     with(pr5)physics_apply_impulse(phy_com_x,phy_com_y,global.lazor_speed*cos(other.phy_rotation*pi/180),global.lazor_speed*sin(other.phy_rotation*pi/180));
     pr5.ign=id;
+    pr5.sid=sid;
     pr5.sii=sii;
     block_fire=1;
     stuck=1;
@@ -382,6 +389,7 @@ else if(weapon_current==4)
     pr5=instance_create(phy_position_x+global.sdist*cos(phy_rotation*pi/180)+1-global.bomb4_radius/2,phy_position_y+global.sdist*sin(phy_rotation*pi/180)+1-global.bomb4_radius/2,bomb4);
     with(pr5)physics_apply_impulse(phy_com_x,phy_com_y,global.bomb4_speed*cos(other.phy_rotation*pi/180),global.bomb4_speed*sin(other.phy_rotation*pi/180));
     pr5.ign=id;
+    pr5.sid=sid;
     block_fire=1;
     }
     if(weapon_current!=1)detonate=1;
