@@ -121,8 +121,8 @@ script_execute(ini_tialise);
 //32*15=480
 
 
-chance=irandom_range(30,60);
-chance_w=irandom_range(30,60);
+chance=irandom_range(global.wall_min_c,global.wall_max_c);
+chance_w=irandom_range(global.wall_min_c,global.wall_max_c);
 
 //global.i_1_scr=2*blocksize*irandom_range(minw/blocksize/2,maxw/blocksize/2);
 //global.i_2_scr=2*blocksize*irandom_range(minh/blocksize/2,maxh/blocksize/2);

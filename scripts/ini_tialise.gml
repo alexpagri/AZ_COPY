@@ -9,6 +9,9 @@ ini_open("settings.ini");
 
 
 
+ini_write_real("settings", "wall_max_c", 50);
+ini_write_real("settings", "wall_min_c", 30);
+
 ini_write_real("settings", "suicide_score_modif", -1);
 
 
@@ -121,6 +124,9 @@ ini_open("settings.ini");
 
 
 
+
+global.wall_max_c=ini_read_real("settings", "wall_max_c", 0);
+global.wall_min_c=ini_read_real("settings", "wall_min_c", 0);
 
 
 global.suicide_score_modif=ini_read_real("settings", "suicide_score_modif", 0);
@@ -243,7 +249,6 @@ ini_close();
 
 
 ////////////////////////////////////////////////////////////////////////////
-
 
 
 
