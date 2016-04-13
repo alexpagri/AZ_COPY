@@ -30,7 +30,7 @@ void citire(int &n,int &m,int mat[500][500],int &tr_l,int &tr_c,int &k,int &Nr_s
 void stergere(int n,int m,int mat[500][500],int tr_l,int tr_c,int &k,int Nr_spati_libere_a_lui_Alex)
 {
 	int i, j;
-	for(i=tr_l-3;i<=tr_l+3;i++)//dau valoarea '0' linilor de la pozitia data cu 3 lini in sus si 3 in jos
+	for(i=tr_l-Nr_spati_libere_a_lui_Alex;i<=tr_l+Nr_spati_libere_a_lui_Alex;i++)//dau valoarea '0' linilor de la pozitia data cu 3 lini in sus si 3 in jos
 		for(j=1;j<=m;j++)
 		{
 			if(mat[i][j]==1)
@@ -38,7 +38,7 @@ void stergere(int n,int m,int mat[500][500],int tr_l,int tr_c,int &k,int Nr_spat
 			mat[i][j]=0;
 		}
 	for(i=1;i<=n;i++)//dau valoarea '0' coloanelor de la pozitia data cu 3 coloane in sus si 3 in jos
-		for(j=tr_c-3;j<=tr_c+3;j++)
+		for(j=tr_c-Nr_spati_libere_a_lui_Alex;j<=tr_c+Nr_spati_libere_a_lui_Alex;j++)
 		{
 			if(mat[i][j]==1)
 				k--;//actualizez numarul de spatii libere
