@@ -8,10 +8,10 @@ using namespace std;
 //n - numar lini ; m - numar coloane
  
 
-void citire(int &n,int &m,int mat[500][500],int &tr_l,int &tr_c,int &k)
+void citire(int &n,int &m,int mat[500][500],int &tr_l,int &tr_c,int &k,int &Nr_spati_libere_a_lui_Alex)
 {
 	ifstream f("text.txt");
-	int i, j,Nr_spati_libere_a_lui_Alex;
+	int i, j;
 	k=0;
 	f>>n>>m;
 	f>>Nr_spati_libere_a_lui_Alex;
@@ -27,7 +27,7 @@ void citire(int &n,int &m,int mat[500][500],int &tr_l,int &tr_c,int &k)
 }
 
 
-void stergere(int n,int m,int mat[500][500],int tr_l,int tr_c,int &k)
+void stergere(int n,int m,int mat[500][500],int tr_l,int tr_c,int &k,int Nr_spati_libere_a_lui_Alex)
 {
 	int i, j;
 	for(i=tr_l-3;i<=tr_l+3;i++)//dau valoarea '0' linilor de la pozitia data cu 3 lini in sus si 3 in jos
@@ -78,10 +78,10 @@ void afisare(int n,int m,int mat[500][500])
 
 int main()
 {
-	int n=0,m=0,mat[500][500],tr_l,tr_c,p;
+	int n=0,m=0,mat[500][500],tr_l,tr_c,p,Nr_spati_libere_a_lui_Alex;
 	int k;
-	citire(n,m,mat,tr_l,tr_c,k);//citesc matricea si pozitia initiala
-	stergere(n,m,mat,tr_l,tr_c,k);//sterg pozitile din jurul pozitiei initiale 
+	citire(n,m,mat,tr_l,tr_c,k,Nr_spati_libere_a_lui_Alex);//citesc matricea si pozitia initiala
+	stergere(n,m,mat,tr_l,tr_c,k,Nr_spati_libere_a_lui_Alex);//sterg pozitile din jurul pozitiei initiale 
 	default_random_engine Random(time(0));
 	uniform_int_distribution<int> Roll(1,k);
 	p= Roll(Random);// aleg un numar aleatoriu dintre '1' si numarul de spatii libere ramase 
