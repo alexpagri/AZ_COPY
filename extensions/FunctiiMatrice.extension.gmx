@@ -52,5 +52,34 @@
       </functions>
       <constants/>
     </file>
+    <file>
+      <filename>rand00m_vladeas.dll</filename>
+      <origname>extensions\rand00m_vladeas.dll</origname>
+      <init></init>
+      <final></final>
+      <kind>1</kind>
+      <uncompress>0</uncompress>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <ProxyFiles/>
+      <functions>
+        <function>
+          <name>rand_calc_vladeas</name>
+          <externalName>spawn_vladeas_pro</externalName>
+          <kind>12</kind>
+          <help></help>
+          <returnType>2</returnType>
+          <argCount>2</argCount>
+          <args>
+            <arg>1</arg>
+            <arg>1</arg>
+          </args>
+        </function>
+      </functions>
+      <constants/>
+    </file>
   </files>
 </extension>

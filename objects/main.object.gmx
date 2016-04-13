@@ -206,7 +206,7 @@ for(i=1;i&lt;grid_m;i++)
 */
 globalvar bonus_matrix;
 
-fil1=file_text_open_write("intrare.txt");
+fil1=file_text_open_write("intrare_max.txt");
 file_text_write_real(fil1,grid_m-1);
 file_text_writeln(fil1);
 file_text_write_real(fil1,grid_n-1);
@@ -239,10 +239,10 @@ if(sp)
 {
 
 
-rand_calc("\\AZ_COPY\\intrare.txt", "\\AZ_COPY\\iesire.txt");
+rand_calc_vladeas("\\AZ_COPY\\intrare_max.txt", "\\AZ_COPY\\iesire_max.txt");
 
 
-fil1=file_text_open_read("iesire.txt");
+fil1=file_text_open_read("iesire_max.txt");
 t2x=file_text_read_real(fil1);
 t2y=file_text_read_real(fil1);
 file_text_close(fil1);

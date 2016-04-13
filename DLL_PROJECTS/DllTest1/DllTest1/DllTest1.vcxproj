@@ -50,7 +50,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PostBuildEvent>
-      <Command>copy ..\Debug\DllTest1.dll ..\..\..\extensions\FunctiiMatrice\rand00m.dll</Command>
+      <Command>copy ..\Debug\DllTest1.dll ..\..\..\extensions\FunctiiMatrice\rand00m_vladeas.dll</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -68,7 +68,7 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <PostBuildEvent>
-      <Command>copy ..\Release\DllTest1.dll ..\..\..\extensions\FunctiiMatrice\rand00m.dll</Command>
+      <Command>copy ..\Release\DllTest1.dll ..\..\..\extensions\FunctiiMatrice\rand00m_vladeas.dll</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>

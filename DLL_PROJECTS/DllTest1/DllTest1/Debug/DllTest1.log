@@ -1,18 +1,18 @@
-﻿Build started 3/19/2016 12:45:52 PM.
+﻿Build started 4/13/2016 9:26:08 PM.
      1>Project "D:\My Documents\GameMaker\Projects\AZ-COPY.gmx\DLL_PROJECTS\DllTest1\DllTest1\DllTest1.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _WINDLL /D _WINDLL /D _MBCS /D _CRT_SECURE_NO_WARNINGS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Source.cpp
          Source.cpp
-     1>d:\my documents\gamemaker\projects\az-copy.gmx\dll_projects\dlltest1\dlltest1\source.cpp(34): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
+     1>d:\my documents\gamemaker\projects\az-copy.gmx\dll_projects\dlltest1\dlltest1\source.cpp(93): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\My Documents\GameMaker\Projects\AZ-COPY.gmx\DLL_PROJECTS\DllTest1\Debug\DllTest1.dll" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\My Documents\GameMaker\Projects\AZ-COPY.gmx\DLL_PROJECTS\DllTest1\Debug\DllTest1.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\My Documents\GameMaker\Projects\AZ-COPY.gmx\DLL_PROJECTS\DllTest1\Debug\DllTest1.lib" /MACHINE:X86 /DLL Debug\Source.obj
          DllTest1.vcxproj -> D:\My Documents\GameMaker\Projects\AZ-COPY.gmx\DLL_PROJECTS\DllTest1\Debug\DllTest1.dll
        PostBuildEvent:
-         copy ..\Debug\DllTest1.dll ..\..\..\extensions\FunctiiMatrice\rand00m.dll
+         copy ..\Debug\DllTest1.dll ..\..\..\extensions\FunctiiMatrice\rand00m_vladeas.dll
          :VCEnd
                  1 file(s) copied.
      1>Done Building Project "D:\My Documents\GameMaker\Projects\AZ-COPY.gmx\DLL_PROJECTS\DllTest1\DllTest1\DllTest1.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:06.38
+Time Elapsed 00:00:03.48
