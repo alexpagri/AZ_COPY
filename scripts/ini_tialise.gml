@@ -9,6 +9,11 @@ ini_open("settings.ini");
 
 
 
+
+
+
+ini_write_real("settings", "tank_mindist", 3);
+
 ini_write_real("settings", "wall_max_c", 50);
 ini_write_real("settings", "wall_min_c", 30);
 
@@ -123,6 +128,9 @@ ini_open("settings.ini");
 //DO NOT EDIT HERE
 
 
+
+
+global.tank_mindist=ini_read_real("settings", "tank_mindist", 0);
 
 
 global.wall_max_c=ini_read_real("settings", "wall_max_c", 0);
@@ -249,7 +257,6 @@ ini_close();
 
 
 ////////////////////////////////////////////////////////////////////////////
-
 
 
 

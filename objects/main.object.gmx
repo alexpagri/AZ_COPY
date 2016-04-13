@@ -211,7 +211,13 @@ file_text_write_real(fil1,grid_m-1);
 file_text_writeln(fil1);
 file_text_write_real(fil1,grid_n-1);
 file_text_writeln(fil1);
-file_text_write_real(fil1,totblocks);
+file_text_write_real(fil1,global.tank_mindist);
+file_text_writeln(fil1);
+file_text_write_real(fil1,loc_m);
+file_text_writeln(fil1);
+file_text_write_real(fil1,loc_n);
+//file_text_writeln(fil1);
+//file_text_write_real(fil1,totblocks);
 for(i=1;i&lt;grid_m;i++)
 {
     file_text_writeln(fil1);
