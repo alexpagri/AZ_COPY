@@ -11,9 +11,10 @@ using namespace std;
 void citire(int &n,int &m,int mat[500][500],int &tr_l,int &tr_c,int &k)
 {
 	ifstream f("text.txt");
-	int i, j;
+	int i, j,Nr_spati_libere_a_lui_Alex;
 	k=0;
 	f>>n>>m;
+	f>>Nr_spati_libere_a_lui_Alex;
 	f>>tr_l>>tr_c;// pozitie obiect inamic
 	for(i=1;i<=n;i++)
 		for(j=1;j<=m;j++)
@@ -50,14 +51,16 @@ void stergere(int n,int m,int mat[500][500],int tr_l,int tr_c,int &k)
 void transformare(int n,int m,int mat[500][500],int p)
 {
 	int i, j;
+	ofstream g("alex.nume");
 	for(i=1;i<=n && p!=0;i++)
 		for(j=1;j<=m && p!=0;j++)
 			if(mat[i][j]==1)//trec prin pozitile libere
 			{
 				p--;//scad din numarul ales aleatoriu pana cand ajunge la 0
 				if(p==0)
-					cout<<i<<" "<<j<<endl;//cand ajunge la 0 afisez ultima pozitie verificata
+					g<<i<<" "<<j<<endl;//cand ajunge la 0 afisez ultima pozitie verificata
 			}
+	g.close();
 }
 
 
