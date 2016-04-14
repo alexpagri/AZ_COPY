@@ -33,6 +33,8 @@ display_set_gui_maximise(1,1,0,0);
 display_reset(global.aa,false);
 
 
+
+
 switch (os_type)
 {
     case os_windows: global.Config = 0; break;
@@ -47,4 +49,5 @@ switch (os_type)
 if(os_type==0||os_type==2||os_type==3)global.type=0;
 else global.type=1;
 
-started=1;
+
+with(main)alarm[3]=global.sdelay;

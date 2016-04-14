@@ -14,7 +14,7 @@
 //file_text_write_real(fil1,0);
 //file_text_write_real(fil1,0);
 //file_text_close(fil1);
-file_delete("settings.ini");
+//file_delete("settings.ini");/////////////////press r to delete settings
 globalvar score2;
 score2[0]=0;
 score2[1]=0;

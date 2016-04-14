@@ -11,8 +11,10 @@ ini_open("settings.ini");
 
 
 
+ini_write_real("settings", "sdelay", 30);
 
-ini_write_real("settings", "tank_mindist", 3);
+
+ini_write_real("settings", "tank_mindist", 15);
 
 ini_write_real("settings", "wall_max_c", 50);
 ini_write_real("settings", "wall_min_c", 30);
@@ -129,6 +131,9 @@ ini_open("settings.ini");
 
 
 
+
+
+global.sdelay=ini_read_real("settings", "sdelay", 0);
 
 global.tank_mindist=ini_read_real("settings", "tank_mindist", 0);
 
@@ -257,7 +262,6 @@ ini_close();
 
 
 ////////////////////////////////////////////////////////////////////////////
-
 
 
 

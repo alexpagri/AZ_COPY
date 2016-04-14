@@ -187,19 +187,19 @@ minigun_end=1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(keyboard_check(key_up) &amp;&amp; stuck==0 &amp;&amp; h_key)
+            <string>if(keyboard_check(key_up) &amp;&amp; stuck==0 &amp;&amp; h_key &amp;&amp; started)
 {
 physics_apply_impulse(phy_com_x,phy_com_y,forces*cos(phy_rotation*pi/180),forces*sin(phy_rotation*pi/180));
 }
-if(keyboard_check(key_left) &amp;&amp; stuck==0 &amp;&amp; h_key)
+if(keyboard_check(key_left) &amp;&amp; stuck==0 &amp;&amp; h_key &amp;&amp; started)
 {
 physics_apply_angular_impulse(-ang_forces);
 }
-if(keyboard_check(key_down) &amp;&amp; stuck==0 &amp;&amp; h_key)
+if(keyboard_check(key_down) &amp;&amp; stuck==0 &amp;&amp; h_key &amp;&amp; started)
 {
 physics_apply_impulse(phy_com_x,phy_com_y,-back_forces*cos(phy_rotation*pi/180),-back_forces*sin(phy_rotation*pi/180));
 }
-if(keyboard_check(key_right) &amp;&amp; stuck==0 &amp;&amp; h_key)
+if(keyboard_check(key_right) &amp;&amp; stuck==0 &amp;&amp; h_key &amp;&amp; started)
 {
 physics_apply_angular_impulse(ang_forces);
 }
@@ -341,7 +341,7 @@ minigun_end=0;
 
 
 
-if(keyboard_check(key_fire) &amp;&amp; block_fire==0 &amp;&amp; detonate==0 &amp;&amp; stuck==0 &amp;&amp; h_key)
+if(keyboard_check(key_fire) &amp;&amp; block_fire==0 &amp;&amp; detonate==0 &amp;&amp; stuck==0 &amp;&amp; h_key &amp;&amp; started)
 {
 if(weapon_current==0)
     {

@@ -240,6 +240,7 @@ if(sp)
 
 
 rand_calc_vladeas("\\AZ_COPY\\intrare_max.txt", "\\AZ_COPY\\iesire_max.txt");
+external_free("rand00m_vladeas.dll");
 
 
 fil1=file_text_open_read("iesire_max.txt");
@@ -259,6 +260,9 @@ pr6=instance_create(t2y*grid_density,t2x*grid_density,control);
         }
 pr6.sid=1;
 
+
+globalvar assign_id;
+assign_id=2;
 
 }
         
@@ -287,7 +291,7 @@ bonus_count=global.bonus_maximum;
 
 
 room_persistent=1;
-if(totblocks&lt;minblocks)script_execute(new_map);
+if(totblocks &lt; minblocks || (sp &amp;&amp; (t2y == 0 &amp;&amp; t2x == 0)))script_execute(new_map);
 
 else {
 with(v_client)event_user(0);
@@ -299,6 +303,29 @@ script_execute(stepa_init);
 background_colour=global.bgcolor;
 
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="3">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>started=1;
 </string>
           </argument>
         </arguments>
@@ -458,6 +485,16 @@ if (dmode==0)
 dmode=1;
 }
 else dmode=0;
+}
+if(sp &amp;&amp; keyboard_check_pressed(ord('R')))
+{
+file_delete("settings.ini");
+}
+
+for(yu=0;yu&lt;assign_id;yu++)////////////////inefficient
+{
+if(score2[yu]&lt;0)
+for(yu2=0;yu2&lt;assign_id;yu2++){score2[yu2]++;}
 }
 
 
