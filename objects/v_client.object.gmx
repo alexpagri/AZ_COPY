@@ -26,6 +26,9 @@
           <argument>
             <kind>1</kind>
             <string>h_spawned=0;
+lcolor=c_white;
+for(yu7=0;yu7&lt;=4;yu7++)key[yu7]=0;
+pr6=noone;
 </string>
           </argument>
         </arguments>
@@ -93,6 +96,56 @@ with(pr6)instance_destroy();
         </arguments>
       </action>
     </event>
+    <event eventtype="7" enumb="12">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if(pr6!=noone)if(instance_exists(pr6))pr6.vku=key[0];
+if(pr6!=noone)if(instance_exists(pr6))pr6.vkd=key[1];
+if(pr6!=noone)if(instance_exists(pr6))pr6.vkl=key[2];
+if(pr6!=noone)if(instance_exists(pr6))pr6.vkr=key[3];
+if(pr6!=noone)if(instance_exists(pr6))pr6.vkf=key[4];
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="11">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>colorvect[t_sid]=lcolor;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="7" enumb="10">
       <action>
         <libid>1</libid>
@@ -147,13 +200,13 @@ file_text_close(fil1);
 pr6=instance_create(t2y*grid_density,t2x*grid_density,control);
         with(pr6)
         {
+        h_key=0;
         key_up=vk_up;
         key_left=vk_left;
         key_down=vk_down;
         key_right=vk_right;
         key_fire=ord('M');
-        h_key=0;
-        sii=c_lime;
+        sii=other.lcolor;
         }
 pr6.sid=t_sid;
 

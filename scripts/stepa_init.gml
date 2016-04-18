@@ -50,4 +50,4 @@ if(os_type==0||os_type==2||os_type==3)global.type=0;
 else global.type=1;
 
 
-with(main)alarm[3]=global.sdelay;
+if(instance_exists(main))with(main)alarm[3]=global.sdelay;

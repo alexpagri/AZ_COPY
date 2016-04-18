@@ -30,6 +30,8 @@ global.grid=mp_grid_create(-grid_density/2,-grid_density/2,global.i_1_scr/grid_d
 
 globalvar dmode;
 
+if(!sp){globalvar colorvect;colorvect[0]=make_colour_rgb(global.mp_color_r, global.mp_color_g, global.mp_color_b);}
+
 dmode=0;
 
 dmo=0;
@@ -78,7 +80,8 @@ if(mp_grid_get_cell(global.grid,loc_n,loc_m)!=-1)
 {
 p=1;
 pr6=instance_create(loc_n*grid_density,loc_m*grid_density,control);
-pr6.sii=c_red;
+if(sp)pr6.sii=c_red;
+else pr6.sii=colorvect[0];
 pr6.sid=0;
 }
 }
@@ -554,11 +557,12 @@ else draw_text(210,10,string(global.cooldown_tillend));
 else
 {
 draw_set_font(font0);
-draw_set_colour(c_black);
 for(yu=0;yu&lt;assign_id;yu++)
 {
+draw_set_colour(colorvect[yu]);
 draw_text(10 + yu*60,10,string(score2[yu]));
 }
+draw_set_colour(c_black);
 for(yu=1;yu&lt;assign_id;yu++)draw_text(40 + (yu-1)*60,10,"-");
 draw_set_colour(c_black);
 if(alarm[1]/room_speed&gt;0)draw_text(10 + assign_id*60,10,string(alarm[1]/room_speed));

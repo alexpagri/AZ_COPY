@@ -25,17 +25,17 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>menulen=4;
+            <string>script_execute(ini_tialise);
+lr=global.mp_color_r;
+lg=global.mp_color_g;
+lb=global.mp_color_b;
+menulen=1;
 menupoz=1;
-globalvar sp;
-globalvar started;
-started=0;
-sp=1;
 cx=room_width/2-84;
 cy=room_height/2-64;
 xl=cx;
 yl=cy+12;
-
+submenu=0;
 </string>
           </argument>
         </arguments>
@@ -70,20 +70,24 @@ menupoz--;
 }
 if(keyboard_check_pressed(vk_enter))
 {
-if(menupoz==1)room_goto(room0);
-if(menupoz==2)room_goto(room3);
-if(menupoz==3){sp=0;
-nm=instance_create(0,0,net_man);
-nm.persistent=1;
-with(nm)svid=network_create_server(network_socket_tcp,690,4);
-if(nm.svid&gt;=0)room_goto(room0);
+
 }
-if(menupoz==4)
+if(keyboard_check_pressed(vk_escape))
 {
-instance_create(0,0,opt);
+ini_open("settings.ini");
+ini_write_real("settings", "mp_color_r", lr);
+ini_write_real("settings", "mp_color_g", lg);
+ini_write_real("settings", "mp_color_b", lb);
+ini_close();
+instance_create(0,0,men);
 instance_destroy();
 }
-}
+if(keyboard_check(ord('Y')) &amp;&amp; lr&gt;0)lr--;
+if(keyboard_check(ord('U')) &amp;&amp; lr&lt;255)lr++;
+if(keyboard_check(ord('H')) &amp;&amp; lg&gt;0)lg--;
+if(keyboard_check(ord('J')) &amp;&amp; lg&lt;255)lg++;
+if(keyboard_check(ord('N')) &amp;&amp; lb&gt;0)lb--;
+if(keyboard_check(ord('M')) &amp;&amp; lb&lt;255)lb++;
 </string>
           </argument>
         </arguments>
@@ -109,10 +113,20 @@ instance_destroy();
             <string>draw_set_colour(c_black);
 draw_set_font(font0);
 draw_rectangle(xl,yl,xl+10,yl+10,false);
-draw_text(cx+20,cy,"Singleplayer");
-draw_text(cx+20,cy+32,"Multi:Connect");
-draw_text(cx+20,cy+64,"Multi:Server");
-draw_text(cx+20,cy+96,"Multi:Options");
+draw_text(cx+20,cy,"Tank Multiplayer Color:");
+draw_sprite_ext(tw,0,cx+310,cy+20,1,1,0,make_colour_rgb(lr,lg,lb),255);
+draw_set_colour(c_red);
+draw_text(cx+52,cy+32,"R");
+draw_set_colour(c_black);
+draw_text(cx+70,cy+32,"(" + string(lr) + ")");
+draw_set_colour(c_green);
+draw_text(cx+52,cy+64,"G");
+draw_set_colour(c_black);
+draw_text(cx+70,cy+64,"(" + string(lg) + ")");
+draw_set_colour(c_blue);
+draw_text(cx+52,cy+96,"B");
+draw_set_colour(c_black);
+draw_text(cx+70,cy+96,"(" + string(lb) + ")");
 </string>
           </argument>
         </arguments>

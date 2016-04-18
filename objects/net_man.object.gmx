@@ -55,24 +55,34 @@ clid=ds_map_find_value(async_load,"id");
 if(tpe==network_type_data)
 {
 buf=ds_map_find_value(async_load,"buffer");
-buf_s=buf=ds_map_find_value(async_load,"size");
+buf_s=ds_map_find_value(async_load,"size");
+script_execute(net_parse_data, clid, buf, buf_s);
 }
 else
 {
 sock=ds_map_find_value(async_load,"socket");
-ok=ds_map_find_value(async_load,"succeeded");
+ok=1;/////////////////////////////////////////////////ds_map_find_value(async_load,"succeeded");///////is_undefined!
 }
+
+/*if(1)for(yu=1;yu&lt;assign_id;yu++)/////////////////////////UPDATE COLOR VECTOR
+{
+cl_i_id=ds_map_find_value(clmap,sock);
+colorvect[yu]=cl_i_id.lcolor;
+}*/
+
 if(tpe==network_type_connect)
 {
 if(ok==1 &amp;&amp; started)
 {
 cl_i_id=instance_create(0,0,v_client);
+cl_i_id.persistent=1;
 cl_i_id.t_sid=assign_id;
+with(cl_i_id)event_user(1);
 score2[cl_i_id.t_sid]=0;
 assign_id++;
 cl_i_id.cli_id=sock;///////////////////////////////////
 ds_map_add(clmap,sock,cl_i_id);//////////////////////////////////////sock or clid   IDK
-}else{network_destroy(sock);}////////////////DO NOT GET CONNECTIONS
+}else{network_destroy(sock);}////////////////DO NOT GET CONNECTIONS///Does this execute disconnect event???
 }
 if(tpe==network_type_disconnect)
 {
@@ -81,9 +91,12 @@ ds_map_delete(clmap,sock);////////////////////////////
 //score2[cl_i_id.t_sid]=0;
 sid=cl_i_id.t_sid;
 with(cl_i_id)instance_destroy();
-for(yu=sid;yu&lt;assign_id-1;yu++)score2[yu]=score2[yu+1];/////move all scores to left (1)
+for(yu=sid;yu&lt;assign_id-1;yu++){score2[yu]=score2[yu+1]; colorvect[yu]=colorvect[yu+1];}/////move all scores and colorz to left (1)
 assign_id--;
 }
+
+
+
 </string>
           </argument>
         </arguments>

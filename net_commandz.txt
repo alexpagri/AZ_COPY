@@ -1,0 +1,16 @@
+##see net_parse_data for range info
+
+[buffer_u8]
+cl>sv
+[sv]
+what=
+
+1:update player custom variables:COLOR[r,g,b][buffer_u8]
+1:[repeat?=every_new_map]
+
+2:send commands on/off style:KEY[k1,k2,k3,k4,fire][buffer_u8]
+2:[repeat?=every_control_key_press]
+
+
+
+

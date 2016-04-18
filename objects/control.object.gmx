@@ -54,6 +54,19 @@ key_right=ord('F');
 key_fire=ord('Q');
 
 
+//virtual network keys
+vku=0;
+vkd=0;
+vkl=0;
+vkr=0;
+vkf=0;
+
+vkfp=0;
+vkfpo=0;
+vkfrx=0;
+vkfpx=0;
+
+
 // 0 default ball(projectile0)
 // 1 (minigun_balls1)
 // 2 (rocket2)
@@ -187,19 +200,23 @@ minigun_end=1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(keyboard_check(key_up) &amp;&amp; stuck==0 &amp;&amp; h_key &amp;&amp; started)
+            <string>vkfp=vkf;
+if(vkfp==1 &amp;&amp; vkfpo==0)vkfpx=1;
+if(vkfp==0 &amp;&amp; vkfpo==1)vkfrx=1;
+
+if(((keyboard_check(key_up) &amp;&amp; h_key) || vku) &amp;&amp; stuck==0 &amp;&amp; started)
 {
 physics_apply_impulse(phy_com_x,phy_com_y,forces*cos(phy_rotation*pi/180),forces*sin(phy_rotation*pi/180));
 }
-if(keyboard_check(key_left) &amp;&amp; stuck==0 &amp;&amp; h_key &amp;&amp; started)
+if(((keyboard_check(key_left) &amp;&amp; h_key) || vkl) &amp;&amp; stuck==0 &amp;&amp; started)
 {
 physics_apply_angular_impulse(-ang_forces);
 }
-if(keyboard_check(key_down) &amp;&amp; stuck==0 &amp;&amp; h_key &amp;&amp; started)
+if(((keyboard_check(key_down) &amp;&amp; h_key) || vkd) &amp;&amp; stuck==0 &amp;&amp; started)
 {
 physics_apply_impulse(phy_com_x,phy_com_y,-back_forces*cos(phy_rotation*pi/180),-back_forces*sin(phy_rotation*pi/180));
 }
-if(keyboard_check(key_right) &amp;&amp; stuck==0 &amp;&amp; h_key &amp;&amp; started)
+if(((keyboard_check(key_right) &amp;&amp; h_key) || vkr) &amp;&amp; stuck==0 &amp;&amp; started)
 {
 physics_apply_angular_impulse(ang_forces);
 }
@@ -317,19 +334,19 @@ if(lazor_helper)
 
 
 
-if(keyboard_check_released(key_fire))
+if(((keyboard_check_released(key_fire) &amp;&amp; h_key) || vkfrx))
 {
 if(weapon_current!=4)detonate=0;
 else if(!instance_exists(pr5))detonate=0;
 }
 
 
-if(keyboard_check_pressed(key_fire) &amp;&amp; stuck==0)
+if(((keyboard_check_pressed(key_fire) &amp;&amp; h_key) || vkfpx) &amp;&amp; stuck==0)
 {
 if(instance_exists(pr5) &amp;&amp; weapon_current==4)pr5.alarm[0]=1;
 }
 
-if(!keyboard_check(key_fire) &amp;&amp; minigun_end==1)
+if(!((keyboard_check(key_fire) &amp;&amp; h_key) || vkf) &amp;&amp; minigun_end==1)
 {
 detonate=0;
 minigun_end=0;
@@ -341,7 +358,7 @@ minigun_end=0;
 
 
 
-if(keyboard_check(key_fire) &amp;&amp; block_fire==0 &amp;&amp; detonate==0 &amp;&amp; stuck==0 &amp;&amp; h_key &amp;&amp; started)
+if(((keyboard_check(key_fire) &amp;&amp; h_key) || vkf) &amp;&amp; block_fire==0 &amp;&amp; detonate==0 &amp;&amp; stuck==0 &amp;&amp; started)
 {
 if(weapon_current==0)
     {
@@ -404,6 +421,10 @@ else if(weapon_current==4)
 prevx=phy_position_x;
 prevy=phy_position_y;
 prevrot=phy_rotation;
+
+vkfpo=vkfp;
+vkfpx=0;
+vkfrx=0;
 
 </string>
           </argument>
