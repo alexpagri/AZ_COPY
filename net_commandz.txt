@@ -1,16 +1,36 @@
 ##see net_parse_data for range info
 
+##repeat info start
+every_new_map_start=started?=1
+every_new_map_end=started?=0
+every_tick=tck
+##repeat info end
+
 [buffer_u8]
 cl>sv
 [sv]
 what=
 
 1:update player custom variables:COLOR[r,g,b][buffer_u8]
-1:[repeat?=every_new_map]
+1:[repeat?=every_new_map_start]
 
 2:send commands on/off style:KEY[k1,k2,k3,k4,fire][buffer_u8]
-2:[repeat?=every_control_key_press]
+2:[repeat?=every_tick]
 
 
+
+[buffer_u8]
+sv>cl
+[cl]
+what=
+
+1:send server variables:INI_SERVER[str][buffer_string]
+1:[repeat?=every_new_map_start]
+
+2:map loaded and started=1 :STARTED[b][buffer_u8]
+2:[repeat?=every_new_map_start || every_new_map_end]
+
+3:send dynamic props:PROP[type,x,y][buffer_u8]
+3:[repeat?=every_tick]
 
 
