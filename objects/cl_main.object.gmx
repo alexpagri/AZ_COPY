@@ -27,23 +27,21 @@
             <kind>1</kind>
             <string>globalvar sock;
 globalvar conn;
+globalvar ent_map;
+ent_map=ds_map_create();
 sock=network_create_socket(network_socket_tcp);
-tck=4;
-alarm[0]=tck;
 script_execute(ini_tialise);
+alarm[0]=global.cl_tck;
 keyup=vk_up;
 keydn=vk_down;
 keyle=vk_left;
 keyri=vk_right;
 keyf=ord('M');
-started=0;
+svstart=0;
 
 get_string_async("IP", "127.0.0.1");
 
-//remove this:
-room_width=128;
-room_height=128;
-window_set_size(128, 128);
+
 </string>
           </argument>
         </arguments>
@@ -66,13 +64,13 @@ window_set_size(128, 128);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(started)
+            <string>if(svstart)
 {
 script_execute(net_cl_write_data, 2, keyboard_check(keyup), keyboard_check(keydn),
 keyboard_check(keyle), keyboard_check(keyri), keyboard_check(keyf));
 }
 
-alarm[0]=tck;
+alarm[0]=global.cl_tck;
 </string>
           </argument>
         </arguments>
@@ -100,6 +98,35 @@ alarm[0]=tck;
         </arguments>
       </action>
     </event>
+    <event eventtype="7" enumb="68">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>tpe=ds_map_find_value(async_load,"type");
+if(tpe==network_type_data)
+{
+buf=ds_map_find_value(async_load,"buffer");
+buf_s=ds_map_find_value(async_load,"size");
+script_execute(net_cl_parse_data, buf, buf_s);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="7" enumb="63">
       <action>
         <libid>1</libid>
@@ -119,9 +146,7 @@ alarm[0]=tck;
             <kind>1</kind>
             <string>ip0=ds_map_find_value(async_load,"result");
 conn=network_connect(sock, ip0, 690);
-script_execute(net_cl_write_data, 1, global.mp_color_r, global.mp_color_g,
-global.mp_color_b);
-started=1;
+
 </string>
           </argument>
         </arguments>

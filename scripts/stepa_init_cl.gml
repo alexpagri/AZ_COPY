@@ -50,9 +50,3 @@ if(os_type==0||os_type==2||os_type==3)global.type=0;
 else global.type=1;
 
 background_colour=global.bgcolor;
-if(instance_exists(main))with(main)alarm[3]=global.sdelay;
-if(!sp)
-{
-script_execute(map_start);
-alarm[4]=global.sv_tck;
-}

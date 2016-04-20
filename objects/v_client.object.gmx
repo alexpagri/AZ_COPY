@@ -29,6 +29,8 @@
 lcolor=c_white;
 for(yu7=0;yu7&lt;=4;yu7++)key[yu7]=0;
 pr6=noone;
+ready=0;
+
 </string>
           </argument>
         </arguments>
@@ -96,6 +98,34 @@ with(pr6)instance_destroy();
         </arguments>
       </action>
     </event>
+    <event eventtype="7" enumb="13">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if(svstart &amp;&amp; global.spectate)
+{
+script_execute(net_write_data, 1, id);
+script_execute(net_write_data, 2, id);
+script_execute(net_write_data, 4, id);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="7" enumb="12">
       <action>
         <libid>1</libid>
@@ -141,6 +171,7 @@ if(pr6!=noone)if(instance_exists(pr6))pr6.vkf=key[4];
           <argument>
             <kind>1</kind>
             <string>colorvect[t_sid]=lcolor;
+if(pr6!=noone)if(instance_exists(pr6))pr6.sii=lcolor;
 </string>
           </argument>
         </arguments>

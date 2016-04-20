@@ -10,7 +10,9 @@ ini_open("settings.ini");
 ///EDIT THESE VALUES
 
 
-
+if(!ini_key_exists("settings", "cl_tck"))ini_write_real("settings", "cl_tck", 2);
+if(!ini_key_exists("settings", "sv_tck"))ini_write_real("settings", "sv_tck", 2);
+if(!ini_key_exists("settings", "spectate"))ini_write_real("settings", "spectate", 1);
 
 if(!ini_key_exists("settings", "mp_color_r"))ini_write_real("settings", "mp_color_r", 255);
 if(!ini_key_exists("settings", "mp_color_g"))ini_write_real("settings", "mp_color_g", 0);
@@ -135,6 +137,11 @@ ini_close();
 ini_open("settings.ini");
 
 //DO NOT EDIT HERE
+
+
+global.cl_tck=ini_read_real("settings", "cl_tck", 0);
+global.sv_tck=ini_read_real("settings", "sv_tck", 0);
+global.spectate=ini_read_real("settings", "spectate", 0);
 
 
 
@@ -272,8 +279,6 @@ ini_close();
 
 
 ////////////////////////////////////////////////////////////////////////////
-
-
 
 
 

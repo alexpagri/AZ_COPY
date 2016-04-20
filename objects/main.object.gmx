@@ -303,9 +303,41 @@ script_execute(stepa_init);
 
 
 
-background_colour=global.bgcolor;
 
 
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="4">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>with(control)
+{
+script_execute(net_write_data,5,v_client,1,id,phy_position_x,
+phy_position_y,phy_rotation,colour_get_red(sii),colour_get_green(sii),
+colour_get_blue(sii));
+}
+
+
+
+alarm[4]=global.sv_tck;
 </string>
           </argument>
         </arguments>
@@ -329,6 +361,7 @@ background_colour=global.bgcolor;
           <argument>
             <kind>1</kind>
             <string>started=1;
+
 </string>
           </argument>
         </arguments>
@@ -351,7 +384,8 @@ background_colour=global.bgcolor;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>script_execute(new_map);
+            <string>if(!sp)script_execute(map_end);
+script_execute(new_map);
 </string>
           </argument>
         </arguments>

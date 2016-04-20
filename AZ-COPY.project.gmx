@@ -18,10 +18,20 @@
     <script>scripts\init.gml</script>
     <script>scripts\new_map.gml</script>
     <script>scripts\stepa_init.gml</script>
+    <script>scripts\stepa_init_cl.gml</script>
     <script>scripts\offer_bonus.gml</script>
     <script>scripts\ini_tialise.gml</script>
+    <script>scripts\ini_tialise_sv.gml</script>
     <script>scripts\net_parse_data.gml</script>
     <script>scripts\net_cl_write_data.gml</script>
+    <script>scripts\net_write_data.gml</script>
+    <script>scripts\net_cl_parse_data.gml</script>
+    <script>scripts\map_start.gml</script>
+    <script>scripts\map_end.gml</script>
+    <script>scripts\map_tick.gml</script>
+    <script>scripts\cl_gen_walls.gml</script>
+    <script>scripts\map_cl_start.gml</script>
+    <script>scripts\map_cl_end.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\font0</font>
@@ -48,6 +58,7 @@
     <object>objects\net_man</object>
     <object>objects\opt</object>
     <object>objects\cl_main</object>
+    <object>objects\obj_ghost</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room2</room>

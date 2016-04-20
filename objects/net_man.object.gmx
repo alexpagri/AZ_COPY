@@ -81,6 +81,7 @@ with(cl_i_id)event_user(1);
 score2[cl_i_id.t_sid]=0;
 assign_id++;
 cl_i_id.cli_id=sock;///////////////////////////////////
+with(cl_i_id)event_user(3);
 ds_map_add(clmap,sock,cl_i_id);//////////////////////////////////////sock or clid   IDK
 }else{network_destroy(sock);}////////////////DO NOT GET CONNECTIONS///Does this execute disconnect event???
 }

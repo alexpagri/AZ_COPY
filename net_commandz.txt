@@ -1,8 +1,8 @@
 ##see net_parse_data for range info
 
 ##repeat info start
-every_new_map_start=started?=1
-every_new_map_end=started?=0
+every_new_map_start=svstart?=1
+every_new_map_end=svstart?=0
 every_tick=tck
 ##repeat info end
 
@@ -30,7 +30,16 @@ what=
 2:map loaded and started=1 :STARTED[b][buffer_u8]
 2:[repeat?=every_new_map_start || every_new_map_end]
 
-3:send dynamic props:PROP[type,x,y][buffer_u8]
-3:[repeat?=every_tick]
+4:send static props and screen size:SIZE[x,y][buffer_u16] + WALL[index][buffer_u8]
+4:[repeat?=every_new_map_start]
+
+5:update/create props:PROP[type,id,x,y,rot][buffer_u16] + CUSTOM
+5:[subtype:{1 control[color];2 projectile0;}]
+5:[repeat?=every_special_obj_create]
+
+6:remove props:PROP[id][buffer_u16]
+6:[repeat?=every_special_obj_destroy]
+
+
 
 

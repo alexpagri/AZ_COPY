@@ -76,6 +76,8 @@ weapon_current=0;
 lazor_helper=0;
 
 h_key=1;
+
+
 </string>
           </argument>
         </arguments>
@@ -105,7 +107,10 @@ if(instance_exists(pr2))with(pr2)instance_destroy();
 if(instance_number(control)&lt;=2)main.alarm[1]=room_speed*global.delay_tillend;
 if(!instance_exists(shake))instance_create(0,0,shake);
 //with(sid)event_user(0);
-
+if(!sp)
+{
+script_execute(net_write_data,6,v_client,id);
+}
 
 </string>
           </argument>
