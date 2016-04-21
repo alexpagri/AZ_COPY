@@ -64,6 +64,12 @@ no_score=0;
           <argument>
             <kind>1</kind>
             <string>if(instance_exists(ign))ign.block_fire=0;
+
+if(!sp)//remove object
+{
+script_execute(net_write_data,6,v_client,id);
+}
+
 </string>
           </argument>
         </arguments>

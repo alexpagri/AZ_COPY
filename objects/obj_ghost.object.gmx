@@ -29,6 +29,161 @@
 rot=0;
 colx=c_white;
 lid=0;
+uinit=0;
+rotation=0;
+x1=0;
+y1=0;
+x2=0;
+y2=0;
+x3=0;
+y3=0;
+x4=0;
+y4=0;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if(uinit)
+{
+//if(tpe==15)if(x==xprevious &amp;&amp; y==yprevious)instance_destroy();//bomb_shatter bug!
+x+=dx/global.sv_tck_l1;
+y+=dy/global.sv_tck_l1;
+if(rotation==1)
+{
+rot+=dr/global.sv_tck_l1;
+}
+dxo=dx;
+dyo=dy;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="11">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>x1=x+global.bonus_radius*cos((rot+45)*pi/180);
+y1=y+global.bonus_radius*sin((rot+45)*pi/180);
+x2=x+global.bonus_radius*cos((rot+135)*pi/180);
+y2=y+global.bonus_radius*sin((rot+135)*pi/180);
+x3=x+global.bonus_radius*cos((rot+225)*pi/180);
+y3=y+global.bonus_radius*sin((rot+225)*pi/180);
+x4=x+global.bonus_radius*cos((rot+315)*pi/180);
+y4=y+global.bonus_radius*sin((rot+315)*pi/180);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="10">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>// xn = 2*x - xo
+xn=2*x-xo;
+yn=2*y-yo;
+dx=xn-x;
+dy=yn-y;
+dxo=-1;
+dyo=-1;
+xo=x;
+yo=y;
+if(rotation==1)
+{
+rn=2*rot-ro;
+dr=rn-rot;
+ro=rot;
+}
+if(tpe==9)//shake
+{
+if(!instance_exists(shake))instance_create(0,0,shake);
+}
+uinit=1;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="64">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if(tpe==7)//scores
+{
+draw_set_font(font0);
+for(yu=0;yu&lt;assign_id;yu++)
+{
+draw_set_colour(colorvect[yu]);
+draw_text(10 + yu*60,10,string(score2[yu]));
+}
+draw_set_colour(c_black);
+for(yu=1;yu&lt;assign_id;yu++)draw_text(40 + (yu-1)*60,10,"-");
+draw_set_colour(c_black);
+if(a1/room_speed&gt;0)draw_text(10 + assign_id*60,10,string(a1/room_speed));
+else draw_text(10 + assign_id*60,10,string(global.delay_tillend));
+if(a2/room_speed&gt;0)draw_text(80 + assign_id*60,10,string(a2/room_speed));
+else draw_text(80 + assign_id*60,10,string(global.cooldown_tillend));
+}
 </string>
           </argument>
         </arguments>
@@ -51,10 +206,60 @@ lid=0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(tpe==1)
+            <string>if(tpe==1)//control
 {
 draw_sprite_ext(tw,0,x,y,1,1,rot,colx,255);
 }
+
+if(tpe==10)//projectile0
+{
+draw_set_colour(c_black);
+draw_circle(x,y,global.projectile0_radius,false);
+}
+
+if(tpe==11)//minigun_balls1
+{
+draw_set_colour(c_black);
+draw_circle(x,y,global.minigun_balls1_radius,false);
+}
+
+if(tpe==12)//rocket2
+{
+draw_sprite_ext(rk,0,x,y,1,1,arctan2(y-yprevious,xprevious-x)*180/pi+180,colx,255);
+}
+
+if(tpe==20)//bonus
+{
+draw_set_colour(c_black);
+draw_text(x-global.bonus_radius,y-global.bonus_radius,string(bid));
+draw_line_width(x1,y1,x2,y2,global.bonus_thick);
+draw_line_width(x2,y2,x3,y3,global.bonus_thick);
+draw_line_width(x3,y3,x4,y4,global.bonus_thick);
+draw_line_width(x4,y4,x1,y1,global.bonus_thick);
+}
+
+if(tpe==14)//bomb4
+{
+draw_set_colour(c_black);
+draw_circle(x,y,global.bomb4_radius,false);
+}
+
+if(tpe==15)//bomb4_shatter
+{
+draw_set_colour(c_black);
+draw_triangle(x+global.bomb4_shatter_l*cos(rot*pi/180),y+global.bomb4_shatter_l*sin(rot*pi/180),
+    x+global.bomb4_shatter_l*cos((rot+120)*pi/180),y+global.bomb4_shatter_l*sin((rot+120)*pi/180),
+    x+global.bomb4_shatter_l*cos((rot+240)*pi/180),y+global.bomb4_shatter_l*sin((rot+240)*pi/180),false);
+}
+
+if(tpe==8)
+{
+draw_set_colour(c_black);
+for(f=1;f&lt;cpo;f++)draw_line_width_colour(cpox[f-1],cpoy[f-1],cpox[f],cpoy[f],global.lazor_radius,colx,colx);
+draw_line_width_colour(cpox[cpo-1],cpoy[cpo-1],x,y,global.lazor_radius,colx,colx);
+}
+
+
 </string>
           </argument>
         </arguments>

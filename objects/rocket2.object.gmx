@@ -78,6 +78,11 @@ ign.block_fire=0;
 ign.weapon_current=0;
 }
 if(pf!=noone &amp;&amp; instance_exists(pf))with(pf)instance_destroy();
+
+if(!sp)//remove object
+{
+script_execute(net_write_data,6,v_client,id);
+}
 </string>
           </argument>
         </arguments>

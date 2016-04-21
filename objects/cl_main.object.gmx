@@ -28,6 +28,11 @@
             <string>globalvar sock;
 globalvar conn;
 globalvar ent_map;
+globalvar assign_id;
+globalvar score2;
+globalvar colorvect;
+globalvar a1;
+globalvar a2;
 ent_map=ds_map_create();
 sock=network_create_socket(network_socket_tcp);
 script_execute(ini_tialise);

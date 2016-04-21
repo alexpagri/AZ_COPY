@@ -28,7 +28,10 @@
     <script>scripts\net_cl_parse_data.gml</script>
     <script>scripts\map_start.gml</script>
     <script>scripts\map_end.gml</script>
+    <script>scripts\map_tick_prec.gml</script>
     <script>scripts\map_tick.gml</script>
+    <script>scripts\map_tick_l1.gml</script>
+    <script>scripts\map_tick_l2.gml</script>
     <script>scripts\cl_gen_walls.gml</script>
     <script>scripts\map_cl_start.gml</script>
     <script>scripts\map_cl_end.gml</script>

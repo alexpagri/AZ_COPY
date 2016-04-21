@@ -55,4 +55,7 @@ if(!sp)
 {
 script_execute(map_start);
 alarm[4]=global.sv_tck;
+alarm[5]=global.sv_tck_l1;
+alarm[6]=global.sv_tck_prec;
+alarm[7]=global.sv_tck_l2;
 }

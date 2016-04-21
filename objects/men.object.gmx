@@ -33,8 +33,8 @@ globalvar svstart;
 svstart=0;
 started=0;
 sp=1;
-cx=room_width/2-84;
-cy=room_height/2-64;
+cx=room_width/2-94;
+cy=room_height/2-74;
 xl=cx;
 yl=cy+12;
 

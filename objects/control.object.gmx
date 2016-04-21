@@ -104,10 +104,10 @@ h_key=1;
 if(instance_exists(pr1))with(pr1)instance_destroy();
 if(instance_exists(pr2))with(pr2)instance_destroy();
 //if(main.alarm[1]&lt;0)
-if(instance_number(control)&lt;=2)main.alarm[1]=room_speed*global.delay_tillend;
+if(instance_number(control)&lt;=2 &amp;&amp; is_ending==0)main.alarm[1]=room_speed*global.delay_tillend;
 if(!instance_exists(shake))instance_create(0,0,shake);
 //with(sid)event_user(0);
-if(!sp)
+if(!sp)//remove object
 {
 script_execute(net_write_data,6,v_client,id);
 }

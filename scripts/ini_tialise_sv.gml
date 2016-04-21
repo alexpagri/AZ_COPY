@@ -8,7 +8,15 @@ ini_open("settings_sv.ini");
 
 
 
+global.delay_tillend=ini_read_real("settings", "delay_tillend", 0);
+global.cooldown_tillend=ini_read_real("settings", "cooldown_tillend", 0);
 
+
+global.cl_tck=ini_read_real("settings", "cl_tck", 0);
+global.sv_tck=ini_read_real("settings", "sv_tck", 0);
+global.sv_tck_l1=ini_read_real("settings", "sv_tck_l1", 0);
+global.sv_tck_l2=ini_read_real("settings", "sv_tck_l2", 0);
+global.sv_tck_prec=ini_read_real("settings", "sv_tck_prec", 0);
 
 
 global.sdelay=ini_read_real("settings", "sdelay", 0);
@@ -53,6 +61,15 @@ global.wall_color=ini_read_real("settings", "wall_color", 0);
 global.xdist=ini_read_real("settings", "xdist", 0);
 global.ydist=ini_read_real("settings", "ydist", 0);
 
+global.bonus_radius=ini_read_real("settings", "bonus_radius", 0);
+global.bonus_thick=ini_read_real("settings", "bonus_thick", 0);
+global.minigun_balls1_radius=ini_read_real("settings", "minigun_balls1_radius", 0);
+global.rocket2_radius=ini_read_real("settings", "rocket2_radius", 0);
+global.lazor_radius=ini_read_real("settings", "lazor_radius", 0);
+global.bomb4_radius=ini_read_real("settings", "bomb4_radius", 0);
+global.projectile0_radius=ini_read_real("settings", "projectile0_radius", 0);
+global.bomb4_shatter_l=ini_read_real("settings", "bomb4_shatter_l", 0);
+
 //global.aa=ini_read_real("settings", "aa", 0);
 
 
@@ -74,7 +91,6 @@ ini_close();
 
 
 ////////////////////////////////////////////////////////////////////////////
-
 
 
 

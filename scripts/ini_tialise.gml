@@ -12,6 +12,9 @@ ini_open("settings.ini");
 
 if(!ini_key_exists("settings", "cl_tck"))ini_write_real("settings", "cl_tck", 2);
 if(!ini_key_exists("settings", "sv_tck"))ini_write_real("settings", "sv_tck", 2);
+if(!ini_key_exists("settings", "sv_tck_l1"))ini_write_real("settings", "sv_tck_l1", 6);
+if(!ini_key_exists("settings", "sv_tck_l2"))ini_write_real("settings", "sv_tck_l2", 12);
+if(!ini_key_exists("settings", "sv_tck_prec"))ini_write_real("settings", "sv_tck_prec", 1);
 if(!ini_key_exists("settings", "spectate"))ini_write_real("settings", "spectate", 1);
 
 if(!ini_key_exists("settings", "mp_color_r"))ini_write_real("settings", "mp_color_r", 255);
@@ -141,6 +144,9 @@ ini_open("settings.ini");
 
 global.cl_tck=ini_read_real("settings", "cl_tck", 0);
 global.sv_tck=ini_read_real("settings", "sv_tck", 0);
+global.sv_tck_l1=ini_read_real("settings", "sv_tck_l1", 0);
+global.sv_tck_l2=ini_read_real("settings", "sv_tck_l2", 0);
+global.sv_tck_prec=ini_read_real("settings", "sv_tck_prec", 0);
 global.spectate=ini_read_real("settings", "spectate", 0);
 
 
@@ -279,7 +285,6 @@ ini_close();
 
 
 ////////////////////////////////////////////////////////////////////////////
-
 
 
 

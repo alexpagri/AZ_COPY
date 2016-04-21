@@ -53,6 +53,11 @@ cy=view_yview[0];
             <kind>1</kind>
             <string>view_xview[0]=cx;
 view_yview[0]=cy;
+
+if(!sp)//remove object
+{
+script_execute(net_write_data,6,v_client,id);
+}
 </string>
           </argument>
         </arguments>

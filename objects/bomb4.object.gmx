@@ -89,6 +89,12 @@ with(pr5)
     }
 }
 }
+
+if(!sp)//remove object
+{
+script_execute(net_write_data,6,v_client,id);
+}
+
 </string>
           </argument>
         </arguments>
