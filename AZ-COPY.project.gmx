@@ -6,6 +6,7 @@
   <datafiles number="1" name="datafiles"/>
   <NewExtensions>
     <extension index="0">extensions\FunctiiMatrice</extension>
+    <extension index="1">extensions\Networking</extension>
   </NewExtensions>
   <sounds name="sound"/>
   <sprites name="sprites">
@@ -35,6 +36,9 @@
     <script>scripts\cl_gen_walls.gml</script>
     <script>scripts\map_cl_start.gml</script>
     <script>scripts\map_cl_end.gml</script>
+    <script>scripts\init_fixtures.gml</script>
+    <script>scripts\del_fixtures.gml</script>
+    <script>scripts\resize_code.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\font0</font>
@@ -62,6 +66,7 @@
     <object>objects\opt</object>
     <object>objects\cl_main</object>
     <object>objects\obj_ghost</object>
+    <object>objects\reset_display</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room2</room>

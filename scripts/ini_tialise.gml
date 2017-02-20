@@ -10,6 +10,10 @@ ini_open("settings.ini");
 ///EDIT THESE VALUES
 
 
+if(!ini_key_exists("settings", "vsyncx"))ini_write_real("settings", "vsyncx", 1);
+if(!ini_key_exists("settings", "phy_spd"))ini_write_real("settings", "phy_spd", 360);
+if(!ini_key_exists("settings", "phy_iter"))ini_write_real("settings", "phy_iter", 20);
+if(!ini_key_exists("settings", "r_speed"))ini_write_real("settings", "r_speed", 60);
 if(!ini_key_exists("settings", "cl_tck"))ini_write_real("settings", "cl_tck", 2);
 if(!ini_key_exists("settings", "sv_tck"))ini_write_real("settings", "sv_tck", 2);
 if(!ini_key_exists("settings", "sv_tck_l1"))ini_write_real("settings", "sv_tck_l1", 6);
@@ -49,7 +53,7 @@ if(!ini_key_exists("settings", "maxh"))ini_write_real("settings", "maxh", 600);
 if(!ini_key_exists("settings", "minw"))ini_write_real("settings", "minw", 640);
 if(!ini_key_exists("settings", "minh"))ini_write_real("settings", "minh", 480);
 if(!ini_key_exists("settings", "wall_width"))ini_write_real("settings", "wall_width", 4);
-if(!ini_key_exists("settings", "wall_length"))ini_write_real("settings", "wall_length", 68);
+if(!ini_key_exists("settings", "wall_length"))ini_write_real("settings", "wall_length", 58);
 
 
 
@@ -90,14 +94,14 @@ if(!ini_key_exists("settings", "lazor_help_speed"))ini_write_real("settings", "l
 if(!ini_key_exists("settings", "lazor_help_radius"))ini_write_real("settings", "lazor_help_radius", 5);
 
 if(!ini_key_exists("settings", "lazor_life"))ini_write_real("settings", "lazor_life", 0.5);
-if(!ini_key_exists("settings", "lazor_speed"))ini_write_real("settings", "lazor_speed", 50);
-if(!ini_key_exists("settings", "lazor_radius"))ini_write_real("settings", "lazor_radius", 3.5);
+if(!ini_key_exists("settings", "lazor_speed"))ini_write_real("settings", "lazor_speed", 20);
+if(!ini_key_exists("settings", "lazor_radius"))ini_write_real("settings", "lazor_radius", 1.5);
 
 if(!ini_key_exists("settings", "rocket2_life"))ini_write_real("settings", "rocket2_life", 15);
 if(!ini_key_exists("settings", "rocket2_speed"))ini_write_real("settings", "rocket2_speed", 20);
 if(!ini_key_exists("settings", "rocket2_radius"))ini_write_real("settings", "rocket2_radius", 8);
-if(!ini_key_exists("settings", "rocket2_catch_up"))ini_write_real("settings", "rocket2_catch_up", 0.1);
-if(!ini_key_exists("settings", "rocket2_ghost_speed"))ini_write_real("settings", "rocket2_ghost_speed", 15);
+if(!ini_key_exists("settings", "rocket2_catch_up"))ini_write_real("settings", "rocket2_catch_up", 0.2);
+if(!ini_key_exists("settings", "rocket2_ghost_speed"))ini_write_real("settings", "rocket2_ghost_speed", 25);
 if(!ini_key_exists("settings", "rocket2_angdiff"))ini_write_real("settings", "rocket2_angdiff", 0);
 if(!ini_key_exists("settings", "rocket2_init_timer"))ini_write_real("settings", "rocket2_init_timer", 3);
 if(!ini_key_exists("settings", "rocket2_speedup_timer"))ini_write_real("settings", "rocket2_speedup_timer", 3.1);
@@ -132,7 +136,7 @@ if(!ini_key_exists("settings", "cooldown_tillend"))ini_write_real("settings", "c
 if(!ini_key_exists("settings", "xdist"))ini_write_real("settings", "xdist", 0);
 if(!ini_key_exists("settings", "ydist"))ini_write_real("settings", "ydist", 64);
 
-if(!ini_key_exists("settings", "aa"))ini_write_real("settings", "aa", 4);
+if(!ini_key_exists("settings", "aa"))ini_write_real("settings", "aa", 8);
 
 ini_close();
 
@@ -142,6 +146,10 @@ ini_open("settings.ini");
 //DO NOT EDIT HERE
 
 
+global.vsyncx=ini_read_real("settings", "vsyncx", 0);
+global.phy_spd=ini_read_real("settings", "phy_spd", 0);
+global.phy_iter=ini_read_real("settings", "phy_iter", 0);
+global.r_speed=ini_read_real("settings", "r_speed", 0);
 global.cl_tck=ini_read_real("settings", "cl_tck", 0);
 global.sv_tck=ini_read_real("settings", "sv_tck", 0);
 global.sv_tck_l1=ini_read_real("settings", "sv_tck_l1", 0);

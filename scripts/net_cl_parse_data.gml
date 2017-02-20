@@ -22,6 +22,7 @@ globalvar minblocks;
 globalvar grid_matrix;
 globalvar is_ending;
 script_execute(ini_tialise_sv);
+room_speed=global.r_speed;
 }
 if(what==2)
 {
@@ -43,6 +44,25 @@ for(i=0;i<=n;i++)for(j=0;j<=m;j++)
 {
 script_execute(cl_gen_walls, buffer_read(buf, buffer_u8), i, j);
 }
+application_surface_enable(true);//!!!!!!!!!!!!!!! REM ! Global game settings!
+
+surface_resize(application_surface,global.i_1_scr+2*global.xdist,global.i_2_scr+2*global.ydist);
+//display_reset(global.aa,false);
+sfx=surface_create(global.i_1_scr+2*(global.xdist+wall_width/2)+1,global.i_2_scr+2*(global.ydist+wall_width/2)+1);
+surface_set_target(sfx);
+with(obj_wall)
+{
+draw_enable_alphablend(false);
+draw_set_colour(global.wall_color);
+draw_rectangle(x1+global.xdist+wall_width/2,y1+global.ydist+wall_width/2,x2+global.xdist+wall_width/2,y2+global.ydist+wall_width/2,false);
+draw_enable_alphablend(true);
+}
+surface_reset_target();
+if(file_exists("surf_map.png"))file_delete("surf_map.png");
+surface_save(sfx,"surf_map.png");
+background_index[0]=background_create_from_surface(sfx,0,0,global.i_1_scr+2*global.xdist,global.i_2_scr+2*global.ydist,false,false);
+surface_free(sfx);
+
 script_execute(stepa_init_cl);
 }
 

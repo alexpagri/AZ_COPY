@@ -25,7 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
+            <string>script_execute(init_fixtures);
+
 global.grid=mp_grid_create(-grid_density/2,-grid_density/2,global.i_1_scr/grid_density+1,global.i_2_scr/grid_density+1,grid_density,grid_density);
 
 globalvar dmode;
@@ -36,11 +37,24 @@ dmode=0;
 
 dmo=0;
 
-show_debug_overlay(false);
+room_speed=global.r_speed;
+if(global.phy_spd!=0)physics_world_update_speed(global.phy_spd);
+if(global.phy_iter!=0)physics_world_update_iterations(global.phy_iter);
+if(debug_mode)show_debug_overlay(true);
+else show_debug_overlay(true);
 
 
 for(i=0;i&lt;=n;i++)for(j=0;j&lt;=m;j++)
 {
+if(grid_walls[i,j]==1)
+{
+ins=instance_create(blocksize*i,blocksize*j,obj_wall);
+//ins.phy_rotation=0;
+ins.ht=wall_width;
+ins.wd=wall_width;
+with(ins)event_user(0);
+mp_grid_add_instances(global.grid,ins,false);
+}
 if(grid_walls[i,j]==2)
 {
 ins=instance_create(blocksize*i,blocksize*j,obj_wall);
@@ -69,6 +83,25 @@ globalvar grid_m;
 grid_n=global.i_1_scr/grid_density;
 grid_m=global.i_2_scr/grid_density;
 
+application_surface_enable(true);//!!!!!!!!!!!!!!! REM ! Global game settings!
+
+surface_resize(application_surface,global.i_1_scr+2*global.xdist,global.i_2_scr+2*global.ydist);
+//display_reset(global.aa,false);
+sfx=surface_create(global.i_1_scr+2*(global.xdist+wall_width/2)+1,global.i_2_scr+2*(global.ydist+wall_width/2)+1);
+surface_set_target(sfx);
+with(obj_wall)
+{
+draw_enable_alphablend(false);
+draw_set_colour(global.wall_color);
+draw_rectangle(x1+global.xdist+wall_width/2,y1+global.ydist+wall_width/2,x2+global.xdist+wall_width/2,y2+global.ydist+wall_width/2,false);
+draw_enable_alphablend(true);
+}
+surface_reset_target();
+if(file_exists("surf_map.png"))file_delete("surf_map.png");
+surface_save(sfx,"surf_map.png");
+background_index[0]=background_create_from_surface(sfx,0,0,global.i_1_scr+2*global.xdist,global.i_2_scr+2*global.ydist,false,false);
+surface_free(sfx);
+/////////////////////////////////////////////WALLS DONE HERE!
 
 p=0;
 
@@ -311,102 +344,6 @@ script_execute(stepa_init);
         </arguments>
       </action>
     </event>
-    <event eventtype="2" enumb="7">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>script_execute(map_tick_l2);
-
-
-
-
-
-
-
-
-alarm[7]=global.sv_tck_l2;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="2" enumb="6">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>script_execute(map_tick_prec);
-
-
-
-
-
-
-
-
-alarm[6]=global.sv_tck_prec;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="2" enumb="5">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>script_execute(map_tick_l1);
-
-
-
-
-
-
-
-
-alarm[5]=global.sv_tck_l1;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
     <event eventtype="2" enumb="4">
       <action>
         <libid>1</libid>
@@ -424,7 +361,7 @@ alarm[5]=global.sv_tck_l1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>script_execute(map_tick);
+            <string>script_execute(net_write_data,7,v_client);
 
 
 
@@ -433,7 +370,7 @@ alarm[5]=global.sv_tck_l1;
 
 
 
-alarm[4]=global.sv_tck;
+alarm[4]=global.sv_tck_l2;
 </string>
           </argument>
         </arguments>
@@ -732,6 +669,7 @@ physics_world_draw_debug(flag);
 draw_text(20,20,string(fps));
 draw_text(20,40,string(fps_real));
 }
+
 </string>
           </argument>
         </arguments>

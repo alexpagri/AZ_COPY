@@ -4,4 +4,6 @@
 //file_text_close(fil1);
 room_persistent=0;
 started=0;
+background_delete(background_index[0]);
+script_execute(del_fixtures);
 room_goto(room0);

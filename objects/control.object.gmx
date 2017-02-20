@@ -76,7 +76,7 @@ weapon_current=0;
 lazor_helper=0;
 
 h_key=1;
-
+if(!sp)alarm[3]=global.sv_tck_prec;
 
 </string>
           </argument>
@@ -112,6 +112,33 @@ if(!sp)//remove object
 script_execute(net_write_data,6,v_client,id);
 }
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="3">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>script_execute(net_write_data,5,v_client,1,id,phy_position_x,
+phy_position_y,phy_rotation,colour_get_red(sii),colour_get_green(sii),
+colour_get_blue(sii));
+
+alarm[3]=global.sv_tck_prec;
 </string>
           </argument>
         </arguments>
@@ -398,7 +425,7 @@ else if(weapon_current==2)
     }
 else if(weapon_current==3)
     {
-    pr5=instance_create(phy_position_x+global.sdist*cos(phy_rotation*pi/180)+1-global.lazor_radius/2,phy_position_y+global.sdist*sin(phy_rotation*pi/180)+1-global.lazor_radius/2,lazor);
+    pr5=instance_create(phy_position_x+global.sdist*cos(phy_rotation*pi/180)/2+1-global.lazor_radius/2,phy_position_y+global.sdist*sin(phy_rotation*pi/180)/2+1-global.lazor_radius/2,lazor);
     with(pr5)physics_apply_impulse(phy_com_x,phy_com_y,global.lazor_speed*cos(other.phy_rotation*pi/180),global.lazor_speed*sin(other.phy_rotation*pi/180));
     pr5.ign=id;
     pr5.sid=sid;

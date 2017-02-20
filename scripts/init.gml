@@ -117,6 +117,7 @@ script_execute(ini_tialise);
 
 
 
+
 //32*20=640
 //32*15=480
 
@@ -161,6 +162,23 @@ else if((i)%2==0 && (j)%2==1)
     else grid_walls[i,j]=0;
 }
 else grid_walls[i,j]=0;
+}
+for(i=0;i<=n;i+=2)for(j=0;j<=m;j+=2)
+{
+check[0]=1;
+check[1]=1;
+check[2]=1;
+check[3]=1;
+if(i==0)check[0]=0;
+if(i==n)check[1]=0;
+if(j==m)check[2]=0;
+if(j==0)check[3]=0;
+putnode=0;
+if(check[0] && grid_walls[i-1,j]==2)putnode=1;
+if(check[1] && grid_walls[i+1,j]==2)putnode=1;
+if(check[2] && grid_walls[i,j+1]==3)putnode=1;
+if(check[3] && grid_walls[i,j-1]==3)putnode=1;
+if(putnode)grid_walls[i,j]=1;
 }
 
 

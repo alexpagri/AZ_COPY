@@ -12,6 +12,9 @@ global.delay_tillend=ini_read_real("settings", "delay_tillend", 0);
 global.cooldown_tillend=ini_read_real("settings", "cooldown_tillend", 0);
 
 
+global.phy_spd=ini_read_real("settings", "phy_spd", 0);
+global.phy_iter=ini_read_real("settings", "phy_iter", 0);
+global.r_speed=ini_read_real("settings", "r_speed", 0);
 global.cl_tck=ini_read_real("settings", "cl_tck", 0);
 global.sv_tck=ini_read_real("settings", "sv_tck", 0);
 global.sv_tck_l1=ini_read_real("settings", "sv_tck_l1", 0);

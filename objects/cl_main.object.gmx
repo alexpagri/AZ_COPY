@@ -150,7 +150,7 @@ script_execute(net_cl_parse_data, buf, buf_s);
           <argument>
             <kind>1</kind>
             <string>ip0=ds_map_find_value(async_load,"result");
-conn=network_connect(sock, ip0, 690);
+conn=network_connect_raw(sock, ip0, 690);
 
 </string>
           </argument>

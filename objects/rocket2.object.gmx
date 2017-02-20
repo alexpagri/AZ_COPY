@@ -26,14 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>alarm[0]=room_speed*global.rocket2_life;
-fix1=physics_fixture_create();
-physics_fixture_set_circle_shape(fix1,global.rocket2_radius);
-physics_fixture_set_friction(fix1,0);
-physics_fixture_set_density(fix1,0.5);
-physics_fixture_set_linear_damping(fix1,0);
-physics_fixture_set_restitution(fix1,1);
-physics_fixture_set_collision_group(fix1,0);
-physics_fixture_bind(fix1,id);
+physics_fixture_bind(global.fix1[2],id);
 phy_fixed_rotation=1;
 //phy_bullet=1;
 has_init=1;
@@ -50,6 +43,8 @@ globalvar speedf;
 globalvar xty;
 globalvar xtz;
 no_score=0;
+
+if(!sp)alarm[3]=global.sv_tck_prec;
 </string>
           </argument>
         </arguments>
@@ -83,6 +78,35 @@ if(!sp)//remove object
 {
 script_execute(net_write_data,6,v_client,id);
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="3">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>script_execute(net_write_data,5,v_client,12,id,phy_position_x,
+phy_position_y,0,colour_get_red(sii),colour_get_green(sii),
+colour_get_blue(sii));
+
+
+
+alarm[3]=global.sv_tck_prec;
 </string>
           </argument>
         </arguments>
@@ -202,28 +226,14 @@ if(phy_speed!=0)checkm=y+phy_speed_y/phy_speed*global.chkdist*global.rocket2_rad
 if(!instance_exists(ign))
 {
 solved_col=1;
-fix1=physics_fixture_create();
-physics_fixture_set_circle_shape(fix1,global.rocket2_radius);
-physics_fixture_set_friction(fix1,0);
-physics_fixture_set_density(fix1,5000);
-physics_fixture_set_linear_damping(fix1,0);
-physics_fixture_set_restitution(fix1,1);
-physics_fixture_set_collision_group(fix1,0);
-physics_fixture_bind(fix1,id);
+physics_fixture_bind(global.fix1[2],id);
 phy_fixed_rotation=1;
 phy_bullet=1;
 }
-else if((physics_test_overlap(x,y,0,ign)==false || physics_test_overlap(checkn,checkm,0,obj_wall)==true))
+else if(physics_test_overlap(x,y,0,ign)==false)
 {
 solved_col=1;
-fix1=physics_fixture_create();
-physics_fixture_set_circle_shape(fix1,global.rocket2_radius);
-physics_fixture_set_friction(fix1,0);
-physics_fixture_set_density(fix1,5000);
-physics_fixture_set_linear_damping(fix1,0);
-physics_fixture_set_restitution(fix1,1);
-physics_fixture_set_collision_group(fix1,0);
-physics_fixture_bind(fix1,id);
+physics_fixture_bind(global.fix1[2],id);
 phy_fixed_rotation=1;
 phy_bullet=1;
 }
@@ -258,25 +268,28 @@ phy_speed_y=sin(xty)*speedf;
     <event eventtype="4" ename="obj_wall">
       <action>
         <libid>1</libid>
-        <id>115</id>
-        <kind>0</kind>
+        <id>603</id>
+        <kind>7</kind>
         <userelative>0</userelative>
         <isquestion>0</isquestion>
         <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_bounce</functionname>
+        <exetype>2</exetype>
+        <functionname></functionname>
         <codestring></codestring>
         <whoName>self</whoName>
         <relative>0</relative>
         <isnot>0</isnot>
         <arguments>
           <argument>
-            <kind>4</kind>
-            <string>1</string>
-          </argument>
-          <argument>
-            <kind>4</kind>
-            <string>1</string>
+            <kind>1</kind>
+            <string>if(solved_col==0)
+{
+solved_col=1;
+physics_fixture_bind(global.fix1[2],id);
+phy_fixed_rotation=1;
+phy_bullet=1;
+}
+</string>
           </argument>
         </arguments>
       </action>

@@ -26,14 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>alarm[0]=room_speed*global.minigun_balls1_life;
-fix1=physics_fixture_create();
-physics_fixture_set_circle_shape(fix1,global.minigun_balls1_radius);
-physics_fixture_set_friction(fix1,0);
-physics_fixture_set_density(fix1,0.5);
-physics_fixture_set_linear_damping(fix1,0);
-physics_fixture_set_restitution(fix1,1);
-physics_fixture_set_collision_group(fix1,0);
-physics_fixture_bind(fix1,id);
+physics_fixture_bind(global.fix1[1],id);
 phy_fixed_rotation=1;
 //phy_bullet=1;
 has_init=1;
@@ -41,6 +34,8 @@ solved_col=0;
 checkn=0;
 checkm=0;
 no_score=0;
+
+if(!sp)alarm[1]=global.sv_tck_l1;
 </string>
           </argument>
         </arguments>
@@ -69,6 +64,32 @@ if(!sp)//remove object
 script_execute(net_write_data,6,v_client,id);
 }
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>script_execute(net_write_data,5,v_client,11,id,phy_position_x,
+phy_position_y);
+
+alarm[1]=global.sv_tck_l1;
 </string>
           </argument>
         </arguments>
@@ -137,30 +158,16 @@ checkm=y+phy_speed_y/phy_speed*global.chkdist*global.minigun_balls1_radius;
 if(!instance_exists(ign))
 {
 solved_col=1;
-fix1=physics_fixture_create();
-physics_fixture_set_circle_shape(fix1,global.minigun_balls1_radius);
-physics_fixture_set_friction(fix1,0);
-physics_fixture_set_density(fix1,5000);
-physics_fixture_set_linear_damping(fix1,0);
-physics_fixture_set_restitution(fix1,1);
-physics_fixture_set_collision_group(fix1,0);
-physics_fixture_bind(fix1,id);
+physics_fixture_bind(global.fix1[1],id);
 phy_fixed_rotation=1;
-phy_bullet=1;
+phy_bullet=0;
 }
-else if((physics_test_overlap(x,y,0,ign)==false || physics_test_overlap(checkn,checkm,0,obj_wall)==true))
+else if(physics_test_overlap(x,y,0,ign)==false)
 {
 solved_col=1;
-fix1=physics_fixture_create();
-physics_fixture_set_circle_shape(fix1,global.minigun_balls1_radius);
-physics_fixture_set_friction(fix1,0);
-physics_fixture_set_density(fix1,5000);
-physics_fixture_set_linear_damping(fix1,0);
-physics_fixture_set_restitution(fix1,1);
-physics_fixture_set_collision_group(fix1,0);
-physics_fixture_bind(fix1,id);
+physics_fixture_bind(global.fix1[1],id);
 phy_fixed_rotation=1;
-phy_bullet=1;
+phy_bullet=0;
 }
 }
 </string>
@@ -185,7 +192,14 @@ phy_bullet=1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string></string>
+            <string>if(solved_col==0)
+{
+solved_col=1;
+physics_fixture_bind(global.fix1[1],id);
+phy_fixed_rotation=1;
+phy_bullet=0;
+}
+</string>
           </argument>
         </arguments>
       </action>

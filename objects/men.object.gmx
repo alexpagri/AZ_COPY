@@ -77,7 +77,7 @@ if(menupoz==2)room_goto(room3);
 if(menupoz==3){sp=0;
 nm=instance_create(0,0,net_man);
 nm.persistent=1;
-with(nm)svid=network_create_server(network_socket_tcp,690,4);
+with(nm)svid=network_create_server_raw(network_socket_tcp,690,4);
 if(nm.svid&gt;=0)room_goto(room0);
 }
 if(menupoz==4)

@@ -72,7 +72,7 @@ colorvect[yu]=cl_i_id.lcolor;
 
 if(tpe==network_type_connect)
 {
-if(ok==1 &amp;&amp; started)
+if(ok==1)// &amp;&amp; started or svstart?) Get connection on map restart, looks safe :))
 {
 cl_i_id=instance_create(0,0,v_client);
 cl_i_id.persistent=1;

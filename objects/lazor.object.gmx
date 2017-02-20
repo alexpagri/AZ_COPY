@@ -28,15 +28,10 @@
             <string>cpo=1;
 cpox[0]=x;
 cpoy[0]=y;
+cpoxs[0]=x;
+cpoys[0]=y;
 alarm[0]=room_speed*global.lazor_life;
-fix1=physics_fixture_create();
-physics_fixture_set_circle_shape(fix1,global.lazor_radius);
-physics_fixture_set_friction(fix1,0);
-physics_fixture_set_density(fix1,0.5);
-physics_fixture_set_linear_damping(fix1,0);
-physics_fixture_set_restitution(fix1,1);
-physics_fixture_set_collision_group(fix1,0);
-physics_fixture_bind(fix1,id);
+physics_fixture_bind(global.fix1[3],id);
 phy_fixed_rotation=1;
 phy_bullet=1;
 has_init=1;
@@ -45,6 +40,8 @@ checkn=0;
 checkm=0;
 sii=c_red;
 no_score=0;
+
+if(!sp)alarm[1]=global.sv_tck_l1;
 </string>
           </argument>
         </arguments>
@@ -79,6 +76,34 @@ if(!sp)//remove object
 script_execute(net_write_data,6,v_client,id);
 }
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>script_execute(net_write_data,8,v_client,id,phy_position_x,
+phy_position_y,colour_get_red(sii),colour_get_green(sii),
+colour_get_blue(sii),cpo);
+
+
+alarm[1]=global.sv_tck_l1;
 </string>
           </argument>
         </arguments>
@@ -138,6 +163,25 @@ else {if(instance_exists(ign))score2[sid]++;else score2[sid]+=global.score_dead;
 }
 instance_destroy();
 }
+for(variyx=0;variyx&lt;cpo;variyx++)
+{
+if(variyx&lt;cpo-1)iddx=collision_line(cpox[variyx],cpoy[variyx],cpox[variyx+1],cpoy[variyx+1],control,true,true);
+else iddx=collision_line(cpox[variyx],cpoy[variyx],phy_position_x,phy_position_y,control,true,true);
+
+if(iddx!=noone &amp;&amp; (variyx!=0 || iddx!=ign))
+{
+
+if(instance_exists(iddx))with(iddx)instance_destroy();
+if(no_score==0)
+{
+if(iddx==ign)score2[sid]+=global.suicide_score_modif;
+else {if(instance_exists(ign))score2[sid]++;else score2[sid]+=global.score_dead;}
+}
+
+
+}
+
+}
 }
 
 if(solved_col==0)
@@ -147,28 +191,14 @@ checkm=y+phy_speed_y/phy_speed*global.chkdist*global.lazor_radius;
 if(!instance_exists(ign))
 {
 solved_col=1;
-fix1=physics_fixture_create();
-physics_fixture_set_circle_shape(fix1,global.lazor_radius);
-physics_fixture_set_friction(fix1,0);
-physics_fixture_set_density(fix1,5000);
-physics_fixture_set_linear_damping(fix1,0);
-physics_fixture_set_restitution(fix1,1);
-physics_fixture_set_collision_group(fix1,0);
-physics_fixture_bind(fix1,id);
+physics_fixture_bind(global.fix1[3],id);
 phy_fixed_rotation=1;
 phy_bullet=1;
 }
-else if((physics_test_overlap(x,y,0,ign)==false || physics_test_overlap(checkn,checkm,0,obj_wall)==true))
+else if(physics_test_overlap(x,y,0,ign)==false)
 {
 solved_col=1;
-fix1=physics_fixture_create();
-physics_fixture_set_circle_shape(fix1,global.lazor_radius);
-physics_fixture_set_friction(fix1,0);
-physics_fixture_set_density(fix1,5000);
-physics_fixture_set_linear_damping(fix1,0);
-physics_fixture_set_restitution(fix1,1);
-physics_fixture_set_collision_group(fix1,0);
-physics_fixture_bind(fix1,id);
+physics_fixture_bind(global.fix1[3],id);
 phy_fixed_rotation=1;
 phy_bullet=1;
 }
@@ -197,9 +227,62 @@ phy_bullet=1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>cpox[cpo]=phy_collision_x[0];
+            <string>/*sum1=0;
+sum2=0;
+for(tvt=0;tvt&lt;phy_collision_points &amp;&amp; tvt&lt;=3;tvt++)
+{
+sum1+=phy_collision_x[tvt];
+sum2+=phy_collision_y[tvt];
+}
+sum1/=phy_collision_points;
+sum2/=phy_collision_points;
+*/
+
+cpox[cpo]=phy_collision_x[0];
 cpoy[cpo]=phy_collision_y[0];
+cpoxs[cpo]=phy_collision_x[0];
+cpoys[cpo]=phy_collision_y[0];
 cpo++;
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if(solved_col==0)
+{
+solved_col=1;
+physics_fixture_bind(global.fix1[3],id);
+phy_fixed_rotation=1;
+phy_bullet=1;
+
+iddx=noone;
+iddx=collision_circle(phy_position_x,phy_position_y,global.lazor_radius,control,true,true);
+if(iddx!=noone)
+{
+if(instance_exists(iddx))with(iddx)instance_destroy();
+if(no_score==0)
+{
+if(iddx==ign)score2[sid]+=global.suicide_score_modif;
+else {if(instance_exists(ign))score2[sid]++;else score2[sid]+=global.score_dead;}
+}
+instance_destroy();
+}
+}
 </string>
           </argument>
         </arguments>
@@ -225,8 +308,12 @@ cpo++;
             <string>draw_set_colour(c_black);
 //draw_circle(x,y,global.lazor_radius,false);
 //draw_circle(checkn,checkm,global.projectile0_radius/2,false);
-for(f=1;f&lt;cpo;f++)draw_line_width_colour(cpox[f-1],cpoy[f-1],cpox[f],cpoy[f],global.lazor_radius,sii,sii);
-draw_line_width_colour(cpox[cpo-1],cpoy[cpo-1],phy_position_x,phy_position_y,global.lazor_radius,sii,sii);
+for(f=1;f&lt;cpo;f++)
+{
+draw_line_width_colour(cpoxs[f-1],cpoys[f-1],cpox[f],cpoy[f],global.lazor_radius*2,sii,sii);
+//draw_circle_colour((cpox[f]+cpoxs[f])/2,(cpoy[f]+cpoys[f])/2,global.lazor_radius,sii,sii,false);
+}
+draw_line_width_colour(cpoxs[cpo-1],cpoys[cpo-1],phy_position_x,phy_position_y,global.lazor_radius*2,sii,sii);
 </string>
           </argument>
         </arguments>

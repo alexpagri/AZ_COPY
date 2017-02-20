@@ -115,11 +115,11 @@ with(pr6)instance_destroy();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(svstart &amp;&amp; global.spectate)
+            <string>if(global.spectate)// &amp;&amp; svstart
 {
 script_execute(net_write_data, 1, id);
-script_execute(net_write_data, 2, id);
 script_execute(net_write_data, 4, id);
+script_execute(net_write_data, 2, id);
 }
 </string>
           </argument>

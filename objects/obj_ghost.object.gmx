@@ -255,8 +255,8 @@ draw_triangle(x+global.bomb4_shatter_l*cos(rot*pi/180),y+global.bomb4_shatter_l*
 if(tpe==8)
 {
 draw_set_colour(c_black);
-for(f=1;f&lt;cpo;f++)draw_line_width_colour(cpox[f-1],cpoy[f-1],cpox[f],cpoy[f],global.lazor_radius,colx,colx);
-draw_line_width_colour(cpox[cpo-1],cpoy[cpo-1],x,y,global.lazor_radius,colx,colx);
+for(f=1;f&lt;cpo;f++)draw_line_width_colour(cpox[f-1],cpoy[f-1],cpox[f],cpoy[f],global.lazor_radius*2,colx,colx);
+draw_line_width_colour(cpox[cpo-1],cpoy[cpo-1],x,y,global.lazor_radius*2,colx,colx);
 }
 
 

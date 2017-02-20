@@ -26,20 +26,14 @@
           <argument>
             <kind>1</kind>
             <string>alarm[0]=random(global.bomb4_shatter_s_delay*room_speed);
-fix1=physics_fixture_create();
-physics_fixture_set_circle_shape(fix1,global.bomb4_shatter_l);
-physics_fixture_set_friction(fix1,0);
-physics_fixture_set_density(fix1,0.5);
-physics_fixture_set_linear_damping(fix1,0);
-physics_fixture_set_angular_damping(fix1,0);
-physics_fixture_set_restitution(fix1,1);
-physics_fixture_set_collision_group(fix1,0);
-physics_fixture_bind(fix1,id);
-//phy_bullet=1;
+physics_fixture_bind(global.fix1[5],id);
+phy_bullet=0;
 ns=1;
 phy_speed_x=0;
 phy_speed_y=0;
 no_score=0;
+
+if(!sp)alarm[1]=global.sv_tck_l1;
 </string>
           </argument>
         </arguments>
@@ -68,6 +62,32 @@ if(!sp)//remove object
 script_execute(net_write_data,6,v_client,id);
 }
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>script_execute(net_write_data,(!ns)*5,v_client,15,id,phy_position_x,
+phy_position_y,phy_rotation);//ns is 0 when ok
+
+alarm[1]=global.sv_tck_l1;
 </string>
           </argument>
         </arguments>

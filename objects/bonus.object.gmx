@@ -38,8 +38,11 @@ physics_fixture_set_angular_damping(fix1,0);
 physics_fixture_set_restitution(fix1,1);
 physics_fixture_set_collision_group(fix1,0);
 physics_fixture_bind(fix1,id);
+physics_fixture_delete(fix1);
 
 fix_col=0;
+
+if(!sp)alarm[0]=global.sv_tck_l2;
 </string>
           </argument>
         </arguments>
@@ -68,6 +71,33 @@ if(!sp)//remove object
 script_execute(net_write_data,6,v_client,id);
 }
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>script_execute(net_write_data,5,v_client,20,id,phy_position_x,
+phy_position_y,phy_rotation,0,0,0,bid);
+
+
+alarm[0]=global.sv_tck_l2;
 </string>
           </argument>
         </arguments>
@@ -123,6 +153,7 @@ physics_fixture_set_angular_damping(fix1,0);
 physics_fixture_set_restitution(fix1,1);
 physics_fixture_set_collision_group(fix1,0);
 physics_fixture_bind(fix1,id);
+physics_fixture_delete(fix1);
 
 
 fix_col=1;

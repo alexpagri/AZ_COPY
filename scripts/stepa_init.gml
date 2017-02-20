@@ -15,6 +15,7 @@ view_xview[0]=(-global.xdist);
 view_yview[0]=(-global.ydist);
 view_wview[0]=global.i_1_scr+2*global.xdist;
 view_hview[0]=global.i_2_scr+2*global.ydist;
+view_surface_id[0]=application_surface;
 
 
 
@@ -24,13 +25,14 @@ view_hview[0]=global.i_2_scr+2*global.ydist;
 
 
 
-application_surface_enable(false);//!!!!!!!!!!!!!!! REM ! Global game settings!
+//application_surface_enable(true);//!!!!!!!!!!!!!!! REM ! Global game settings!
 
+//surface_resize(application_surface,global.i_1_scr+2*global.xdist,global.i_2_scr+2*global.ydist);
 display_set_gui_size(global.i_1_scr+2*global.xdist,global.i_2_scr+2*global.ydist);
 window_set_size(global.i_1_scr+2*global.xdist,global.i_2_scr+2*global.ydist);
 //window_set_rectangle(0,0,global.i_1_scr,global.i_2_scr);
 display_set_gui_maximise(1,1,0,0);
-display_reset(global.aa,false);
+//display_reset(global.aa,false);
 
 
 
@@ -49,13 +51,25 @@ switch (os_type)
 if(os_type==0||os_type==2||os_type==3)global.type=0;
 else global.type=1;
 
-background_colour=global.bgcolor;
-if(instance_exists(main))with(main)alarm[3]=global.sdelay;
+background_x[0]=view_xview[0]-wall_width/2;
+background_y[0]=view_yview[0]-wall_width/2;
+background_color=global.bgcolor;
+background_visible[0]=true;
+//if(instance_exists(main))with(main)alarm[3]=global.sdelay;
+started=1;
 if(!sp)
 {
 script_execute(map_start);
-alarm[4]=global.sv_tck;
-alarm[5]=global.sv_tck_l1;
-alarm[6]=global.sv_tck_prec;
-alarm[7]=global.sv_tck_l2;
+//alarm[4]=global.sv_tck;
+//alarm[5]=global.sv_tck_l1;
+//alarm[6]=global.sv_tck_prec;
+alarm[4]=global.sv_tck_l2;
 }
+rd=instance_create(0,0,reset_display);
+rd.aa=global.aa;
+rd.xv=-global.xdist;
+rd.yv=-global.ydist;
+rd.wv=global.i_1_scr+2*global.xdist;
+rd.hv=global.i_2_scr+2*global.ydist;
+rd.vsyncx=global.vsyncx;
+draw_texture_flush();

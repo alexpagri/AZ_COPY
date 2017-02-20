@@ -2,7 +2,7 @@
 <object>
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
-  <visible>-1</visible>
+  <visible>0</visible>
   <depth>-1</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
@@ -56,8 +56,9 @@ physics_fixture_set_box_shape(fix1,wd/2,ht/2);
 physics_fixture_set_kinematic(fix1);
 physics_fixture_set_density(fix1,0);
 physics_fixture_set_friction(fix1,0);
-physics_fixture_set_collision_group(fix1,1);
+physics_fixture_set_collision_group(fix1,0);
 physics_fixture_bind(fix1,id);
+physics_fixture_delete(fix1);
 x1=phy_position_x-wd/2;
 y1=phy_position_y-ht/2;
 x2=phy_position_x+wd/2;
@@ -65,30 +66,7 @@ y2=phy_position_y+ht/2;
 mp_grid_add_rectangle(global.grid,x1,y1,x2,y2);
 has_init=1;
 phy_fixed_rotation=1;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>draw_set_colour(global.wall_color);
-draw_rectangle(x1,y1,x2,y2,false);
+phy_bullet=1;
 </string>
           </argument>
         </arguments>
